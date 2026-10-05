@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://cldhvq8pleir5"]
+
+[ext_resource type="Script" uid="uid://d2p56rxq1e3b4" path="res://Scripts/player.gd" id="1_a02cp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_go701"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5a7ea"]
+sky_material = SubResource("ProceduralSkyMaterial_go701")
+
+[sub_resource type="Environment" id="Environment_8j60k"]
+background_mode = 2
+sky = SubResource("Sky_5a7ea")
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tsm8u"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fo5ed"]
+points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a02cp"]
+albedo_color = Color(0.16862746, 0.92941177, 0.07058824, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5pb8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
+albedo_color = Color(0, 0.57254905, 0, 1)
+
+[node name="World" type="Node3D" unique_id=411407117]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1720076914]
+environment = SubResource("Environment_8j60k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1400314547]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1361525664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4832306, 0)
+script = ExtResource("1_a02cp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1239888904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7834157, 0.0394125)
+mesh = SubResource("CapsuleMesh_tsm8u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1849724395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7834157, 0.0394125)
+shape = SubResource("ConvexPolygonShape3D_fo5ed")
+
+[node name="Head" type="Node3D" parent="Player" unique_id=1319079559]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1820319771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5052154, 0)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=951518328]
+transform = Transform3D(0.9999982, -2.1004396e-05, -0.0018730533, 1.6937005e-05, 0.9999976, -0.002173741, 0.0018730945, 0.0021737057, 0.9999959, -7.351474, -0.40672988, -0.1300191)
+use_collision = true
+flip_faces = true
+size = Vector3(57, 0.001, 66.84816)
+material = SubResource("StandardMaterial3D_a02cp")
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=277816354]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles" unique_id=1200907445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 14)
+use_collision = true
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_n5pb8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles" unique_id=769088629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.5, 14)
+use_collision = true
+size = Vector3(5, 2, 5)
+material = SubResource("StandardMaterial3D_c2dob")
+
+[node name="Walls" type="Node3D" parent="." unique_id=152704713]
+
+[node name="Wall1" type="CSGBox3D" parent="Walls" unique_id=49574642]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.2603264, 3.350771, 33.797935)
+use_collision = true
+size = Vector3(57, 8, 1)
+material = SubResource("StandardMaterial3D_tsm8u")
+
+[node name="Wall2" type="CSGBox3D" parent="Walls" unique_id=663014127]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.2603264, 3.350771, -34.202065)
+use_collision = true
+size = Vector3(57, 8, 1)
+material = SubResource("StandardMaterial3D_tsm8u")
+
+[node name="Wall3" type="CSGBox3D" parent="Walls" unique_id=2083411423]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 21.739674, 3.350771, -0.20206451)
+use_collision = true
+size = Vector3(69, 8, 1)
+material = SubResource("StandardMaterial3D_tsm8u")
+
+[node name="Wall4" type="CSGBox3D" parent="Walls" unique_id=2120112758]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -35.260326, 3.350771, -0.20206451)
+use_collision = true
+size = Vector3(69, 8, 1)
+material = SubResource("StandardMaterial3D_tsm8u")
