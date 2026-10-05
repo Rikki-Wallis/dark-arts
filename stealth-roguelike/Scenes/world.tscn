@@ -53,6 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7834157, 0.0394125)
 shape = SubResource("ConvexPolygonShape3D_fo5ed")
 
 [node name="Head" type="Node3D" parent="Player" unique_id=1319079559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.505, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=1820319771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5052154, 0)
