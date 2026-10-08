@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var arms_anim = $Head/Camera3D/LeftHand/AnimationPlayer
 @onready var collision_shape = $CollisionShape3D
 @onready var ceiling_check = $CeilingCheck
+@onready var interact_ray = $Head/Camera3D/InteractRay
 
 # vars
 var speed
@@ -35,6 +36,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Set idle animation for left hand
 	arms_anim.play("LeftHand")
+	# Make sure interact ray doesnt collide with player model
+	interact_ray.add_exception(self)
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,8 +56,6 @@ func _physics_process(delta: float) -> void:
 		is_crouching = true
 	elif is_crouching and not ceiling_check.is_colliding():
 		is_crouching = false
-	
-	
 	# lower the capsules top
 	var target_height = CROUCH_HEIGHT if is_crouching else STAND_HEIGHT
 	collision_shape.shape.height = target_height
@@ -63,7 +64,13 @@ func _physics_process(delta: float) -> void:
 	var target_head_y = CROUCH_HEAD_Y if is_crouching else STAND_HEAD_Y
 	head.position.y = lerp(head.position.y, target_head_y, delta * 10.0)
 	
-	# Handle jump.
+	# Handle interact
+	if Input.is_action_just_pressed("Interact") and interact_ray.is_colliding():
+		var target = interact_ray.get_collider()
+		if target.has_method("interact"):
+			target.interact(self)
+	
+	# Handle jump
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY
 	

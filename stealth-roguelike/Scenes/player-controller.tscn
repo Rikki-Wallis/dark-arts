@@ -37,6 +37,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29999995, 0)
 [node name="LeftHand" parent="Head/Camera3D" unique_id=664663 instance=ExtResource("2_ly2eq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.4, -0.4)
 
+[node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=493323899]
+target_position = Vector3(0, 0, -2.5)
+
 [node name="Components" type="Node" parent="." unique_id=987009047]
 
 [node name="WeaponController" type="Node" parent="Components" unique_id=1368423174 node_paths=PackedStringArray("weapon_model_parent")]
