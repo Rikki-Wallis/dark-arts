@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cras0mqy5sth4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ofud"]
+albedo_color = Color(0.5294118, 0, 0.67058825, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tsm8u"]
+material = SubResource("StandardMaterial3D_0ofud")
+custom_aabb = AABB(0, 0, 0, 0, 0, 7.85)
+height = 2.575
+
+[node name="PistolWeapon" type="MeshInstance3D" unique_id=1427563359]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, -1, 0, 1, 2.9802322e-08, 0, 0, 0.012499809)
+mesh = SubResource("CapsuleMesh_tsm8u")

@@ -20,10 +20,14 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var arms_anim = $Head/Camera3D/LeftHand/AnimationPlayer
 
 # Runs at beggining of scene, get rid of cursor
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Set idle animation for left hand
+	arms_anim.play("LeftHand")
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
