@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var collision_shape = $CollisionShape3D
 @onready var ceiling_check = $CeilingCheck
 @onready var interact_ray = $Head/Camera3D/InteractRay
+@onready var health = $Components/HealthComponent
 
 # vars
 var speed
@@ -38,6 +39,9 @@ func _ready():
 	arms_anim.play("LeftHand")
 	# Make sure interact ray doesnt collide with player model
 	interact_ray.add_exception(self)
+	# Init health
+	health.health_changed.connect(_on_health_changed)
+	health.died.connect(_on_died)
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -114,3 +118,13 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+func take_damage(amount):
+	health.take_damage(amount)
+	
+func _on_health_changed(current, max):
+	print("Health: ", current, " / ", max)
+	
+func _on_died():
+	print("Player died")
+	get_tree().reload_current_scence()

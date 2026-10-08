@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d2p56rxq1e3b4" path="res://Scripts/player.gd" id="1_od21u"]
 [ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Assets/Weapons/Scripts/weapon_controller.gd" id="2_8l3ce"]
 [ext_resource type="PackedScene" uid="uid://clb45pkext471" path="res://Assets/LeftHand.glb" id="2_ly2eq"]
+[ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/HealthComponent.gd" id="3_au6x3"]
 [ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Assets/Weapons/Resources/pistol.tres" id="3_ly2eq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
@@ -41,6 +42,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.4, -0.4)
 target_position = Vector3(0, 0, -2.5)
 
 [node name="Components" type="Node" parent="." unique_id=987009047]
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=2016202552]
+script = ExtResource("3_au6x3")
+metadata/_custom_type_script = "uid://3giqrawo0d1q"
 
 [node name="WeaponController" type="Node" parent="Components" unique_id=1368423174 node_paths=PackedStringArray("weapon_model_parent")]
 script = ExtResource("2_8l3ce")
