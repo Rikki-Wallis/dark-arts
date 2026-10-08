@@ -1,5 +1,10 @@
 extends CharacterBody3D
 
+@onready var head = $Head
+@onready var camera = $Head/Camera3D
+@onready var arms_anim = $Head/Camera3D/LeftHand/AnimationPlayer
+@onready var collision_shape = $CollisionShape3D
+@onready var ceiling_check = $CeilingCheck
 
 # vars
 var speed
@@ -17,10 +22,13 @@ var t_bob = 0.0
 # fov
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
-
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
-@onready var arms_anim = $Head/Camera3D/LeftHand/AnimationPlayer
+# crouch
+const CROUCH_SPEED = 2.5
+const STAND_HEIGHT = 2.0
+const CROUCH_HEIGHT = 1.2
+const STAND_HEAD_Y = 1.7
+const CROUCH_HEAD_Y = 0.8
+var is_crouching = false
 
 # Runs at beggining of scene, get rid of cursor
 func _ready():
@@ -40,15 +48,32 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# Handle crouch
+	if Input.is_action_pressed("Crouch"):
+		is_crouching = true
+	elif is_crouching and not ceiling_check.is_colliding():
+		is_crouching = false
+	
+	
+	# lower the capsules top
+	var target_height = CROUCH_HEIGHT if is_crouching else STAND_HEIGHT
+	collision_shape.shape.height = target_height
+	collision_shape.position.y = target_height / 2.0
+	# lower head down
+	var target_head_y = CROUCH_HEAD_Y if is_crouching else STAND_HEAD_Y
+	head.position.y = lerp(head.position.y, target_head_y, delta * 10.0)
+	
 	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle sprint
-	if Input.is_action_pressed("Sprint") and is_on_floor():
+	if Input.is_action_pressed("Sprint") and is_on_floor() and not is_crouching:
 		speed = SPRINT_SPEED
-	else:
+	elif not is_crouching:
 		speed = WALK_SPEED
+	else:
+		speed = CROUCH_SPEED
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
