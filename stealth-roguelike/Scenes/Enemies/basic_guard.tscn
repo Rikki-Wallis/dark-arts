@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://d1ncl3323vjom"]
+
+[ext_resource type="Script" uid="uid://dtfdat4o323pd" path="res://Scenes/Enemies/basic_guard.gd" id="1_mpsej"]
+[ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="2_boje0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tsm8u"]
+material = SubResource("StandardMaterial3D_c2dob")
+custom_aabb = AABB(0, 0, 0, 0, 7.845, 0)
+radius = 0.2
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_me50d"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tsm8u"]
+material = SubResource("StandardMaterial3D_me50d")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5pb8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tsm8u"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsm8u"]
+radius = 0.3
+height = 1.9
+
+[node name="BasicGuard" type="CharacterBody3D" unique_id=739860987]
+script = ExtResource("1_mpsej")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1236891930]
+mesh = SubResource("CapsuleMesh_tsm8u")
+
+[node name="Head" type="MeshInstance3D" parent="Body" unique_id=1121247646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("SphereMesh_tsm8u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1225136880]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.9, 0.25)
+material_override = SubResource("StandardMaterial3D_n5pb8")
+mesh = SubResource("CylinderMesh_tsm8u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273884807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000002, 0)
+shape = SubResource("CapsuleShape3D_tsm8u")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1899660066]
+
+[node name="Components" type="Node" parent="." unique_id=1484366538]
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=117026683]
+script = ExtResource("2_boje0")
+metadata/_custom_type_script = "uid://3giqrawo0d1q"
