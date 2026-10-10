@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6l6ga8qp6mkc" path="res://Scripts/debug/interactable_demo.gd" id="1_y2sdx"]
 [ext_resource type="Script" uid="uid://cvxgbt5u35tpe" path="res://Scripts/Environment/PoisonCircle.gd" id="2_cpkch"]
-[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/Components/player-controller.tscn" id="3_xg358"]
+[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/PlayerComponents/player-controller.tscn" id="3_xg358"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_go701"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

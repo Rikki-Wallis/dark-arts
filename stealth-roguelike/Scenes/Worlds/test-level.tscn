@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxnwmkadu4sqr"]
 
-[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/Components/player-controller.tscn" id="1_i6xie"]
+[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/PlayerComponents/player-controller.tscn" id="1_i6xie"]
 [ext_resource type="PackedScene" uid="uid://c3sxehpq4tq14" path="res://Scenes/Environment/simple_torch.tscn" id="2_d8ng0"]
 [ext_resource type="PackedScene" uid="uid://win42gxvgdq8" path="res://Scenes/Environment/level_goal.tscn" id="3_3m75e"]
 [ext_resource type="PackedScene" uid="uid://d1ncl3323vjom" path="res://Scenes/Enemies/basic_guard.tscn" id="4_56eia"]
@@ -36,6 +36,7 @@ environment = SubResource("Environment_56eia")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1734560543]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 13.988202, 0)
+visible = false
 light_energy = 0.2
 shadow_enabled = true
 
@@ -260,7 +261,6 @@ size = Vector3(30, 0.1, 30)
 material = SubResource("StandardMaterial3D_tsm8u")
 
 [node name="Ceilings" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=1777999490]
-visible = false
 
 [node name="Ceiling" type="CSGBox3D" parent="NavigationRegion3D/Layout/Ceilings" unique_id=1939124479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -271,31 +271,13 @@ material = SubResource("StandardMaterial3D_tsm8u")
 [node name="Lights" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=150199635]
 
 [node name="SimpleTorch" parent="NavigationRegion3D/Layout/Lights" unique_id=180359974 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 1.6999999, 3, -10.35)
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 8.2, 4.5, -10.35)
 
-[node name="SimpleTorch3" parent="NavigationRegion3D/Layout/Lights" unique_id=1104463544 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 1.6999999, 3, -10.35)
+[node name="SimpleTorch2" parent="NavigationRegion3D/Layout/Lights" unique_id=1790871445 instance=ExtResource("2_d8ng0")]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 8.2, 4.5, 0.6499996)
 
-[node name="SimpleTorch4" parent="NavigationRegion3D/Layout/Lights" unique_id=307011763 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 8.2, 3, -14.35)
-
-[node name="SimpleTorch6" parent="NavigationRegion3D/Layout/Lights" unique_id=2045817128 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 10.7, 3, 8.15)
-
-[node name="SimpleTorch7" parent="NavigationRegion3D/Layout/Lights" unique_id=1509794254 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 1.6999998, 3, 8.15)
-
-[node name="SimpleTorch8" parent="NavigationRegion3D/Layout/Lights" unique_id=1140713645 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, -5.3, 3, 8.15)
-
-[node name="SimpleTorch9" parent="NavigationRegion3D/Layout/Lights" unique_id=2133514881 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, -12.3, 3, 8.15)
-
-[node name="SimpleTorch5" parent="NavigationRegion3D/Layout/Lights" unique_id=101997411 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(-1.0000001, 0, 1.3113417e-07, 0, 1, 0, -1.3113417e-07, 0, -1.0000001, 8.2, 0.5, -5.3500004)
-
-[node name="SimpleTorch2" parent="NavigationRegion3D/Layout/Lights" unique_id=204668122 instance=ExtResource("2_d8ng0")]
-transform = Transform3D(-8.7422784e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -8.7422784e-08, 14.849999, 3, -10.35)
+[node name="SimpleTorch3" parent="NavigationRegion3D/Layout/Lights" unique_id=369304744 instance=ExtResource("2_d8ng0")]
+transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 4.7, 4.5, 11.65)
 
 [node name="Objectives" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=231527852]
 

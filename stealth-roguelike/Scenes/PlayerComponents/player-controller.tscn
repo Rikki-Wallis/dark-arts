@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d2p56rxq1e3b4" path="res://Scripts/Components/player.gd" id="1_61t1w"]
 [ext_resource type="PackedScene" uid="uid://clb45pkext471" path="res://Assets/Hands/LeftHand.glb" id="2_5s1k0"]
+[ext_resource type="PackedScene" uid="uid://3au0vfv653fu" path="res://Scenes/PlayerComponents/HUD.tscn" id="2_35d83"]
+[ext_resource type="Script" uid="uid://okgbboxgg2fh" path="res://Scripts/UI/hud.gd" id="3_bdnmd"]
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="3_scuu7"]
 [ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Scripts/Weapons/weapon_controller.gd" id="4_nmame"]
 [ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Resources/Weapons/pistol.tres" id="5_mv8wy"]
@@ -19,6 +21,10 @@ radius = 0.4
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=1665905439 groups=["player"]]
 script = ExtResource("1_61t1w")
+
+[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component") instance=ExtResource("2_35d83")]
+script = ExtResource("3_bdnmd")
+health_component = NodePath("../Components/HealthComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682963021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0834157, 0.0394125)
