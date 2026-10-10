@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtfdat4o323pd" path="res://Scenes/Enemies/basic_guard.gd" id="1_mpsej"]
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="2_boje0"]
+[ext_resource type="Script" uid="uid://bvwk60h5kc0an" path="res://Scripts/Components/VisionComponent.gd" id="3_boje0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
 albedo_color = Color(0, 1, 0, 1)
@@ -24,9 +25,9 @@ height = 0.5
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tsm8u"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.2
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsm8u"]
 radius = 0.3
@@ -43,7 +44,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("SphereMesh_tsm8u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1225136880]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.9, -0.25)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.1, 1, -0.2)
+material_override = SubResource("StandardMaterial3D_n5pb8")
+mesh = SubResource("CylinderMesh_tsm8u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body" unique_id=1441271801]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.10000001, 1, -0.2)
 material_override = SubResource("StandardMaterial3D_n5pb8")
 mesh = SubResource("CylinderMesh_tsm8u")
 
@@ -58,3 +64,15 @@ shape = SubResource("CapsuleShape3D_tsm8u")
 [node name="HealthComponent" type="Node" parent="Components" unique_id=117026683]
 script = ExtResource("2_boje0")
 metadata/_custom_type_script = "uid://3giqrawo0d1q"
+
+[node name="VisionComponent" type="Node3D" parent="." unique_id=995652408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.25)
+script = ExtResource("3_boje0")
+metadata/_custom_type_script = "uid://bvwk60h5kc0an"
+
+[node name="AlertLabel" type="Label3D" parent="." unique_id=1829926958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+billboard = 1
+modulate = Color(1, 0, 0, 1)
+text = "!"
+font_size = 64

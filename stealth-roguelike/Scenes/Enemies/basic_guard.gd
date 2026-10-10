@@ -4,7 +4,9 @@ extends CharacterBody3D
 @export var walk_speed: float = 5.0
 @export var wait_time: float = 2.0
 
+@onready var vision = $VisionComponent
 @onready var nav_agent = $NavigationAgent3D
+@onready var alert_label = $AlertLabel
 
 var patrol_index = 0
 var wait_timer = 0.0
@@ -19,6 +21,12 @@ func _ready():
 	if not patrol_points.is_empty():
 		_go_to_next_point()
 	
+	# vision
+	vision.player_spotted.connect(_on_player_spotted)
+	vision.player_lost.connect(_on_player_lost)
+	
+	# alert label
+	alert_label.visible = false
 
 func _physics_process(delta: float):
 	if not is_on_floor():
@@ -66,3 +74,9 @@ func _face_direction(direction, delta):
 	# turn so that -z (forward) points to direction
 	var target_angle = atan2(-direction.x, -direction.z)
 	rotation.y = lerp_angle(rotation.y, target_angle, delta * 8.0)
+	
+func _on_player_spotted():
+	alert_label.visible = true
+	
+func _on_player_lost():
+	alert_label.visible = false
