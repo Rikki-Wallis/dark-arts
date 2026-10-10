@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://win42gxvgdq8"]
+
+[ext_resource type="Script" uid="uid://bdlqorobsaqwi" path="res://Scripts/Environment/LevelGoal.gd" id="1_ykah0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
+albedo_color = Color(1, 0.9254902, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tsm8u"]
+
+[node name="LevelGoal" type="Node3D" unique_id=1941077601]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=2125601088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999976, 0)
+height = 0.049999982
+material = SubResource("StandardMaterial3D_tsm8u")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=60724145]
+script = ExtResource("1_ykah0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1626092490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0625, 0)
+shape = SubResource("CylinderShape3D_tsm8u")

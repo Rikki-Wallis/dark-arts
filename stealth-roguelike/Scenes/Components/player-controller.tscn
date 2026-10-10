@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bjy8gt6tny7ck"]
 
-[ext_resource type="Script" uid="uid://d2p56rxq1e3b4" path="res://Scripts/player.gd" id="1_od21u"]
-[ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Assets/Weapons/Scripts/weapon_controller.gd" id="2_8l3ce"]
-[ext_resource type="PackedScene" uid="uid://clb45pkext471" path="res://Assets/LeftHand.glb" id="2_ly2eq"]
-[ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/HealthComponent.gd" id="3_au6x3"]
-[ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Assets/Weapons/Resources/pistol.tres" id="3_ly2eq"]
+[ext_resource type="Script" uid="uid://d2p56rxq1e3b4" path="res://Scripts/Components/player.gd" id="1_61t1w"]
+[ext_resource type="PackedScene" uid="uid://clb45pkext471" path="res://Assets/Hands/LeftHand.glb" id="2_5s1k0"]
+[ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="3_scuu7"]
+[ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Scripts/Weapons/weapon_controller.gd" id="4_nmame"]
+[ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Resources/Weapons/pistol.tres" id="5_mv8wy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
@@ -17,8 +17,8 @@ radius = 0.45
 [sub_resource type="SphereShape3D" id="SphereShape3D_tsm8u"]
 radius = 0.4
 
-[node name="PlayerController" type="CharacterBody3D" unique_id=1665905439]
-script = ExtResource("1_od21u")
+[node name="PlayerController" type="CharacterBody3D" unique_id=1665905439 groups=["player"]]
+script = ExtResource("1_61t1w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682963021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0834157, 0.0394125)
@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=294815796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29999995, 0)
 
-[node name="LeftHand" parent="Head/Camera3D" unique_id=664663 instance=ExtResource("2_ly2eq")]
+[node name="LeftHand" parent="Head/Camera3D" unique_id=664663 instance=ExtResource("2_5s1k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.4, -0.4)
 
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=493323899]
@@ -44,12 +44,12 @@ target_position = Vector3(0, 0, -2.5)
 [node name="Components" type="Node" parent="." unique_id=987009047]
 
 [node name="HealthComponent" type="Node" parent="Components" unique_id=2016202552]
-script = ExtResource("3_au6x3")
+script = ExtResource("3_scuu7")
 metadata/_custom_type_script = "uid://3giqrawo0d1q"
 
 [node name="WeaponController" type="Node" parent="Components" unique_id=1368423174 node_paths=PackedStringArray("weapon_model_parent")]
-script = ExtResource("2_8l3ce")
-current_weapon = ExtResource("3_ly2eq")
+script = ExtResource("4_nmame")
+current_weapon = ExtResource("5_mv8wy")
 weapon_model_parent = NodePath("../../Head/Camera3D")
 
 [node name="SpellController" type="Node" parent="Components" unique_id=1635449781]

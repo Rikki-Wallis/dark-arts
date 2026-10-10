@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://lf241w0odytv"
-path="res://.godot/imported/left-hand-idle.glb-62b6435b2bcaae0ebd30dfa2487985fa.scn"
+path="res://.godot/imported/left-hand-idle.glb-ed5865fcaa2af830bb0d65e618fcbdd7.scn"
 
 [deps]
 
-source_file="res://Assets/left-hand-idle.glb"
-dest_files=["res://.godot/imported/left-hand-idle.glb-62b6435b2bcaae0ebd30dfa2487985fa.scn"]
+source_file="res://Assets/Hands/left-hand-idle.glb"
+dest_files=["res://.godot/imported/left-hand-idle.glb-ed5865fcaa2af830bb0d65e618fcbdd7.scn"]
 
 [params]
 

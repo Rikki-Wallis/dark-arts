@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diaypjing2hrw"
-path.s3tc="res://.godot/imported/LeftHand_skin_baseColor.png-c428f58b861c65b41ad16fe017d1d435.s3tc.ctex"
+uid="uid://cpgj13tx4qi5i"
+path.s3tc="res://.godot/imported/LeftHand_skin_metallicRoughness.png-41ff6f77d2e73b758e0f839676859834.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5a73475296b9188f398bd226bb0a2db1"
+"md5": "12c270b97ebebbefbd0f3d5f02e624a2"
 }
 
 [deps]
 
-source_file="res://Assets/LeftHand_skin_baseColor.png"
-dest_files=["res://.godot/imported/LeftHand_skin_baseColor.png-c428f58b861c65b41ad16fe017d1d435.s3tc.ctex"]
+source_file="res://Assets/Hands/LeftHand_skin_metallicRoughness.png"
+dest_files=["res://.godot/imported/LeftHand_skin_metallicRoughness.png-41ff6f77d2e73b758e0f839676859834.s3tc.ctex"]
 
 [params]
 
@@ -29,8 +29,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://Assets/Hand/LeftHand_skin_normal.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

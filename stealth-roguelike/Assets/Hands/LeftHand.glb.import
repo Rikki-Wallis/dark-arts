@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://clb45pkext471"
-path="res://.godot/imported/LeftHand.glb-5b8d8c48004164259fc1e4334f33e0a4.scn"
+path="res://.godot/imported/LeftHand.glb-28e14ab5fe935848f0a052e934525172.scn"
 
 [deps]
 
-source_file="res://Assets/LeftHand.glb"
-dest_files=["res://.godot/imported/LeftHand.glb-5b8d8c48004164259fc1e4334f33e0a4.scn"]
+source_file="res://Assets/Hands/LeftHand.glb"
+dest_files=["res://.godot/imported/LeftHand.glb-28e14ab5fe935848f0a052e934525172.scn"]
 
 [params]
 

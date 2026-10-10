@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cldhvq8pleir5"]
 
-[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/player-controller.tscn" id="1_a02cp"]
-[ext_resource type="Script" uid="uid://6l6ga8qp6mkc" path="res://Scripts/interactable_demo.gd" id="1_go701"]
-[ext_resource type="Script" uid="uid://cvxgbt5u35tpe" path="res://Scripts/PoisonCircle.gd" id="2_5a7ea"]
+[ext_resource type="Script" uid="uid://6l6ga8qp6mkc" path="res://Scripts/debug/interactable_demo.gd" id="1_y2sdx"]
+[ext_resource type="Script" uid="uid://cvxgbt5u35tpe" path="res://Scripts/Environment/PoisonCircle.gd" id="2_cpkch"]
+[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/Components/player-controller.tscn" id="3_xg358"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_go701"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 0.5999998, -4.1000004)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_c2dob")
-script = ExtResource("1_go701")
+script = ExtResource("1_y2sdx")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Obstacles" unique_id=324472933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2.1, 14)
@@ -81,7 +81,7 @@ material = SubResource("StandardMaterial3D_c2dob")
 
 [node name="Area3D" type="Area3D" parent="Obstacles" unique_id=731601137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 29)
-script = ExtResource("2_5a7ea")
+script = ExtResource("2_cpkch")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Area3D" unique_id=605322651]
 shape = SubResource("CylinderShape3D_tsm8u")
@@ -114,5 +114,5 @@ use_collision = true
 size = Vector3(69, 8, 1)
 material = SubResource("StandardMaterial3D_tsm8u")
 
-[node name="PlayerController" parent="." unique_id=1665905439 instance=ExtResource("1_a02cp")]
+[node name="PlayerController" parent="." unique_id=1665905439 instance=ExtResource("3_xg358")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
