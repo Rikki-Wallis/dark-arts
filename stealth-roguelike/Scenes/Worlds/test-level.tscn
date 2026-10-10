@@ -17,6 +17,11 @@ background_mode = 2
 sky = SubResource("Sky_3m75e")
 tonemap_mode = 2
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_tsm8u"]
+vertices = PackedVector3Array(15.5, 5.45, 15.5, 15.75, 5.45, 9.75, 15.5, 5.45, -15.5, -15.5, 5.45, -15.5, -15.5, 5.45, 15.5, -6, 0.45, -5.75, -6, 0.45, -8.75, -6.75, 0.45, -9, -14.25, 0.45, -5.75, -6.75, 0.45, -11.25, -5.5, 0.45, -11.5, -5.5, 0.45, -14.5, -14.25, 0.45, -14.5, 0, 0.45, -9.5, 1, 0.45, -9.75, 1, 0.45, -10.5, -0.25, 0.45, -10.75, -4, 0.45, -11.25, -4, 0.45, -9, -0.25, 0.45, -5.5, -0.25, 0.45, -14.5, 13.5, 0.45, -5.75, 13.75, 0.45, -4.75, 14.5, 0.45, -4.75, 14.5, 0.45, -14.25, 2, 0.45, -10.75, 2.25, 0.45, -9.5, 7.75, 0.45, -6.25, 8.75, 0.45, -6.25, 9, 0.45, -5.75, 11.25, 0.45, -5.5, 2, 0.45, -14.25, 2, 0.45, -5.75, 7.5, 0.45, -5.75, 16.75, 2.45, -9.25, 16.75, 2.45, 9.5, 17.5, 2.45, 9.5, 17.5, 2.45, -9.25, 13.25, 0.45, -3.25, 14.5, 0.45, 6.25, 7, 0.45, -3.5, 7, 0.45, 2, 8, 0.45, 2.25, 8, 0.45, 6.25, -9.5, 0.45, 6.25, -9.25, 0.45, 7.25, -8.75, 0.45, 7.25, -8.5, 0.45, 6.25, -8.75, 0.45, 4.5, -8.75, 0.45, -0.75, -7.75, 0.45, -1, -7.75, 0.45, -3.5, -14.25, 0.45, -3.5, -7.5, 0.45, 6.25, -7.5, 0.45, 4.75, -14.25, 0.45, 6.25, -2.75, 0.45, 6.25, -2.5, 0.45, 7.25, -1.75, 0.45, 7.25, -1.5, 0.45, 6.25, -1.75, 0.45, -3.25, -6.5, 0.45, -0.75, -1.75, 0.45, 1, -6.5, 0.45, 4.5, -0.5, 0.45, 6.25, -0.5, 0.45, 1.25, 6.25, 0.45, 2, 0.5, 0.45, -3.25, 0.5, 0.45, 0.75, 4.5, 0.45, 7.25, 5.25, 0.45, 7.25, 5.25, 0.45, 6.5, 4.25, 0.45, 6.25, 5.75, 0.45, 2.25, 5.75, 0.45, 6.25, 0.25, 0.45, 1.25, -8.5, 0.45, 8.5, -9.5, 0.45, 8.5, -2.75, 0.45, 8.5, -14.25, 0.45, 14.25, 4.25, 0.45, 8.5, 5.5, 0.45, 8.5, -1.5, 0.45, 8.5, 14.5, 0.45, 14.5, -14.25, 0.45, 8.5, 14.5, 0.45, 8.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(7, 8, 9), PackedInt32Array(9, 8, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 17), PackedInt32Array(17, 13, 18), PackedInt32Array(13, 19, 18), PackedInt32Array(18, 19, 5), PackedInt32Array(10, 11, 17), PackedInt32Array(17, 11, 20), PackedInt32Array(17, 20, 16), PackedInt32Array(5, 6, 18), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(15, 25, 14), PackedInt32Array(14, 25, 26), PackedInt32Array(28, 27, 26), PackedInt32Array(28, 30, 29), PackedInt32Array(31, 26, 25), PackedInt32Array(30, 28, 21), PackedInt32Array(21, 28, 24), PackedInt32Array(24, 28, 26), PackedInt32Array(24, 26, 31), PackedInt32Array(33, 32, 27), PackedInt32Array(27, 32, 26), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(22, 23, 38), PackedInt32Array(38, 23, 39), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 38), PackedInt32Array(43, 42, 39), PackedInt32Array(39, 42, 38), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(47, 44, 48), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(53, 47, 54), PackedInt32Array(54, 47, 48), PackedInt32Array(44, 55, 48), PackedInt32Array(48, 55, 49), PackedInt32Array(49, 55, 52), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 59), PackedInt32Array(51, 60, 61), PackedInt32Array(61, 60, 62), PackedInt32Array(54, 63, 53), PackedInt32Array(53, 63, 56), PackedInt32Array(61, 50, 51), PackedInt32Array(56, 63, 59), PackedInt32Array(59, 63, 62), PackedInt32Array(62, 63, 61), PackedInt32Array(64, 59, 65), PackedInt32Array(65, 59, 62), PackedInt32Array(41, 66, 40), PackedInt32Array(40, 66, 68), PackedInt32Array(40, 68, 67), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 72), PackedInt32Array(68, 66, 73), PackedInt32Array(71, 72, 74), PackedInt32Array(74, 72, 73), PackedInt32Array(75, 68, 64), PackedInt32Array(64, 68, 72), PackedInt32Array(72, 68, 73), PackedInt32Array(64, 65, 75), PackedInt32Array(46, 76, 45), PackedInt32Array(45, 76, 77), PackedInt32Array(79, 76, 78), PackedInt32Array(70, 81, 69), PackedInt32Array(69, 81, 80), PackedInt32Array(80, 83, 82), PackedInt32Array(82, 83, 79), PackedInt32Array(58, 82, 57), PackedInt32Array(57, 82, 78), PackedInt32Array(79, 78, 82), PackedInt32Array(79, 84, 77), PackedInt32Array(79, 77, 76), PackedInt32Array(81, 85, 83), PackedInt32Array(80, 81, 83)]
+agent_height = 2.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8ng0"]
 albedo_color = Color(0.34117648, 0.58431375, 0.90588236, 1)
 
@@ -36,259 +41,262 @@ shadow_enabled = true
 [node name="PlayerController" parent="." unique_id=1665905439 instance=ExtResource("1_i6xie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 11)
 
-[node name="Layout" type="Node3D" parent="." unique_id=1002736844]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=822114199]
+navigation_mesh = SubResource("NavigationMesh_tsm8u")
 
-[node name="Walls" type="Node3D" parent="Layout" unique_id=988215255]
+[node name="Layout" type="Node3D" parent="NavigationRegion3D" unique_id=1002736844]
 
-[node name="Wall" type="CSGBox3D" parent="Layout/Walls" unique_id=1949462252]
+[node name="Walls" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=988215255]
+
+[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1949462252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 32)
 
-[node name="Wall6" type="CSGBox3D" parent="Layout/Walls" unique_id=1190914744]
+[node name="Wall6" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1190914744]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, -5.5000067, 2.5, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 5)
 
-[node name="Wall7" type="CSGBox3D" parent="Layout/Walls" unique_id=566839621]
+[node name="Wall7" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=566839621]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, 1.4999933, 2.5, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 5)
 
-[node name="Wall8" type="CSGBox3D" parent="Layout/Walls" unique_id=680546873]
+[node name="Wall8" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=680546873]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, 10.499993, 2.5, 7.499997)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 size = Vector3(1, 5, 9)
 
-[node name="Wall12" type="CSGBox3D" parent="Layout/Walls" unique_id=799517990]
+[node name="Wall12" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=799517990]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, -7.2500067, 2.5, -4.500001)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 15.5)
 
-[node name="Wall15" type="CSGBox3D" parent="Layout/Walls" unique_id=2024995400]
+[node name="Wall15" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=2024995400]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, 7.2499933, 0.75, -4.5000024)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 1.5, 11.5)
 
-[node name="Wall20" type="CSGBox3D" parent="Layout/Walls" unique_id=243620918]
+[node name="Wall20" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=243620918]
 transform = Transform3D(1, 0, -6.993822e-07, 0, 1, 0, 6.993822e-07, 0, 1, -7.6335793, 0.75, 1.8833804)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 1.5, 4.5)
 
-[node name="Wall21" type="CSGBox3D" parent="Layout/Walls" unique_id=836968036]
+[node name="Wall21" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=836968036]
 transform = Transform3D(1, 0, -6.993822e-07, 0, 1, 0, 6.993822e-07, 0, 1, -0.63357925, 0.75, -1.7166196)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 1.5, 4.5)
 
-[node name="Wall32" type="CSGBox3D" parent="Layout/Walls" unique_id=353271705]
+[node name="Wall32" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=353271705]
 transform = Transform3D(1, 0, -6.993822e-07, 0, 1, 0, 6.993822e-07, 0, 1, -5.38358, 2.5, -10.2166195)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1.5, 5, 1.5)
 
-[node name="Wall22" type="CSGBox3D" parent="Layout/Walls" unique_id=405515803]
+[node name="Wall22" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=405515803]
 transform = Transform3D(1, 0, -6.993822e-07, 0, 1, 0, 6.993822e-07, 0, 1, 6.8664207, 0.75, 4.8833804)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 1.5, 4.5)
 
-[node name="Wall16" type="CSGBox3D" parent="Layout/Walls" unique_id=697107791]
+[node name="Wall16" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=697107791]
 transform = Transform3D(6.556708e-07, 0, 1, 0, 1, 0, -1, 0, 6.556708e-07, 7.2499933, 4.25, -4.5000024)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 1.5, 11.5)
 
-[node name="Wall13" type="CSGBox3D" parent="Layout/Walls" unique_id=585887534]
+[node name="Wall13" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=585887534]
 transform = Transform3D(0.99998856, 0.002483333, -0.004083442, -0.0024909498, 0.9999952, -0.0018586891, 0.0040788003, 0.0018688532, 0.9999899, 0.99999195, 2.499999, -6.500003)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 5)
 
-[node name="Wall14" type="CSGBox3D" parent="Layout/Walls" unique_id=1202789622]
+[node name="Wall14" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1202789622]
 transform = Transform3D(1, 0, -6.993822e-07, 0, 1, 0, 6.993822e-07, 0, 1, 0.9999923, 2.5, -13.000003)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 4)
 
-[node name="Wall5" type="CSGBox3D" parent="Layout/Walls" unique_id=855977629]
+[node name="Wall5" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=855977629]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, -12.499999, 2.5, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 5)
 
-[node name="Wall9" type="CSGBox3D" parent="Layout/Walls" unique_id=514154697]
+[node name="Wall9" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=514154697]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, -8.999999, 3.75, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2.5, 2)
 
-[node name="Wall10" type="CSGBox3D" parent="Layout/Walls" unique_id=586815768]
+[node name="Wall10" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=586815768]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, -1.999999, 3.75, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2.5, 2)
 
-[node name="Wall11" type="CSGBox3D" parent="Layout/Walls" unique_id=837250923]
+[node name="Wall11" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=837250923]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, 5.000001, 3.75, 7.499996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2.5, 2)
 
-[node name="Wall24" type="CSGBox3D" parent="Layout/Walls" unique_id=1657492778]
+[node name="Wall24" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1657492778]
 transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 15.5, 3.25, 8.749996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 3.5, 1.5)
 
-[node name="Wall28" type="CSGBox3D" parent="Layout/Walls" unique_id=1624699236]
+[node name="Wall28" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1624699236]
 transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 15.5, 3.25, -8.250004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 3.5, 1.5)
 
-[node name="Wall25" type="CSGBox3D" parent="Layout/Walls" unique_id=349055211]
+[node name="Wall25" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=349055211]
 transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 16.750002, 1.75, 0.24999619)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1.5, 0.5, 18.5)
 
-[node name="Wall29" type="CSGBox3D" parent="Layout/Walls" unique_id=837201925]
+[node name="Wall29" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=837201925]
 transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 17.750002, 1, 0.249996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(0.5, 2, 18.5)
 
-[node name="Wall30" type="CSGBox3D" parent="Layout/Walls" unique_id=1642151809]
+[node name="Wall30" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1642151809]
 transform = Transform3D(-3.934025e-07, 0, -1, 0, 1, 0, 1, 0, -3.934025e-07, 17.000004, 1, 9.749996)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(0.5, 2, 2)
 
-[node name="Wall31" type="CSGBox3D" parent="Layout/Walls" unique_id=185984082]
+[node name="Wall31" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=185984082]
 transform = Transform3D(-3.934025e-07, 0, -1, 0, 1, 0, 1, 0, -3.934025e-07, 17.000004, 1, -9.250004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(0.5, 2, 2)
 
-[node name="Wall17" type="CSGBox3D" parent="Layout/Walls" unique_id=1068114457]
+[node name="Wall17" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1068114457]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, 14.000001, 3.75, -4.500004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2.5, 2)
 
-[node name="Wall33" type="CSGBox3D" parent="Layout/Walls" unique_id=1165149897]
+[node name="Wall33" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1165149897]
 transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 1.000001, 3.75, -10.000004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2.5, 2)
 
-[node name="Wall18" type="CSGBox3D" parent="Layout/Walls" unique_id=35868087]
+[node name="Wall18" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=35868087]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, 2.000001, 2.5, -4.500004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2, 1)
 
-[node name="Wall19" type="CSGBox3D" parent="Layout/Walls" unique_id=224859901]
+[node name="Wall19" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=224859901]
 transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, 12.500001, 2.5, -4.500004)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 2, 1)
 
-[node name="Wall4" type="CSGBox3D" parent="Layout/Walls" unique_id=838547441]
+[node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=838547441]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8.9406956e-07, 2.5, 15.5)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 30)
 
-[node name="Wall3" type="CSGBox3D" parent="Layout/Walls" unique_id=1595009085]
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1595009085]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.5, -15.5)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 30)
 
-[node name="Wall2" type="CSGBox3D" parent="Layout/Walls" unique_id=2064233889]
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=2064233889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 2.5, 1.5)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 13)
 
-[node name="Wall26" type="CSGBox3D" parent="Layout/Walls" unique_id=724921459]
+[node name="Wall26" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=724921459]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 2.5, -12.5)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 7)
 
-[node name="Wall27" type="CSGBox3D" parent="Layout/Walls" unique_id=1858254519]
+[node name="Wall27" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1858254519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 2.5, -6.25)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 2.5)
 
-[node name="Wall23" type="CSGBox3D" parent="Layout/Walls" unique_id=1556397836]
+[node name="Wall23" type="CSGBox3D" parent="NavigationRegion3D/Layout/Walls" unique_id=1556397836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 2.5, 12.75)
 material_override = SubResource("StandardMaterial3D_d8ng0")
 use_collision = true
 size = Vector3(1, 5, 6.5)
 
-[node name="Floors" type="Node3D" parent="Layout" unique_id=858913154]
+[node name="Floors" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=858913154]
 
-[node name="Floor2" type="CSGBox3D" parent="Layout/Floors" unique_id=278113369]
+[node name="Floor2" type="CSGBox3D" parent="NavigationRegion3D/Layout/Floors" unique_id=278113369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 0.25)
 use_collision = true
 size = Vector3(3, 0.1, 19.5)
 material = SubResource("StandardMaterial3D_tsm8u")
 
-[node name="Floor" type="CSGBox3D" parent="Layout/Floors" unique_id=913993017]
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D/Layout/Floors" unique_id=913993017]
 use_collision = true
 size = Vector3(30, 0.1, 30)
 material = SubResource("StandardMaterial3D_tsm8u")
 
-[node name="Ceilings" type="Node3D" parent="Layout" unique_id=1777999490]
+[node name="Ceilings" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=1777999490]
 visible = false
 
-[node name="Ceiling" type="CSGBox3D" parent="Layout/Ceilings" unique_id=1939124479]
+[node name="Ceiling" type="CSGBox3D" parent="NavigationRegion3D/Layout/Ceilings" unique_id=1939124479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 use_collision = true
 size = Vector3(32, 0.1, 32)
 material = SubResource("StandardMaterial3D_tsm8u")
 
-[node name="Lights" type="Node3D" parent="Layout" unique_id=150199635]
+[node name="Lights" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=150199635]
 
-[node name="SimpleTorch" parent="Layout/Lights" unique_id=180359974 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch" parent="NavigationRegion3D/Layout/Lights" unique_id=180359974 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 1.6999999, 3, -10.35)
 
-[node name="SimpleTorch3" parent="Layout/Lights" unique_id=1104463544 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch3" parent="NavigationRegion3D/Layout/Lights" unique_id=1104463544 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(0, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 0, 1.6999999, 3, -10.35)
 
-[node name="SimpleTorch4" parent="Layout/Lights" unique_id=307011763 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch4" parent="NavigationRegion3D/Layout/Lights" unique_id=307011763 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 8.2, 3, -14.35)
 
-[node name="SimpleTorch6" parent="Layout/Lights" unique_id=2045817128 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch6" parent="NavigationRegion3D/Layout/Lights" unique_id=2045817128 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 10.7, 3, 8.15)
 
-[node name="SimpleTorch7" parent="Layout/Lights" unique_id=1509794254 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch7" parent="NavigationRegion3D/Layout/Lights" unique_id=1509794254 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, 1.6999998, 3, 8.15)
 
-[node name="SimpleTorch8" parent="Layout/Lights" unique_id=1140713645 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch8" parent="NavigationRegion3D/Layout/Lights" unique_id=1140713645 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, -5.3, 3, 8.15)
 
-[node name="SimpleTorch9" parent="Layout/Lights" unique_id=2133514881 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch9" parent="NavigationRegion3D/Layout/Lights" unique_id=2133514881 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(1.0000001, 0, -4.3711392e-08, 0, 1, 0, 4.3711392e-08, 0, 1.0000001, -12.3, 3, 8.15)
 
-[node name="SimpleTorch5" parent="Layout/Lights" unique_id=101997411 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch5" parent="NavigationRegion3D/Layout/Lights" unique_id=101997411 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(-1.0000001, 0, 1.3113417e-07, 0, 1, 0, -1.3113417e-07, 0, -1.0000001, 8.2, 0.5, -5.3500004)
 
-[node name="SimpleTorch2" parent="Layout/Lights" unique_id=204668122 instance=ExtResource("2_d8ng0")]
+[node name="SimpleTorch2" parent="NavigationRegion3D/Layout/Lights" unique_id=204668122 instance=ExtResource("2_d8ng0")]
 transform = Transform3D(-8.7422784e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -8.7422784e-08, 14.849999, 3, -10.35)
 
-[node name="Objectives" type="Node3D" parent="Layout" unique_id=231527852]
+[node name="Objectives" type="Node3D" parent="NavigationRegion3D/Layout" unique_id=231527852]
 
-[node name="LevelGoal" parent="Layout/Objectives" unique_id=1941077601 instance=ExtResource("3_3m75e")]
+[node name="LevelGoal" parent="NavigationRegion3D/Layout/Objectives" unique_id=1941077601 instance=ExtResource("3_3m75e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0.2, -13.5)
