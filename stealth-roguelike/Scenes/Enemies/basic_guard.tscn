@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtfdat4o323pd" path="res://Scenes/Enemies/basic_guard.gd" id="1_mpsej"]
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="2_boje0"]
+[ext_resource type="Script" uid="uid://503yns3v0h42" path="res://Scripts/Components/DetectionComponent.gd" id="3_3m52m"]
 [ext_resource type="Script" uid="uid://bvwk60h5kc0an" path="res://Scripts/Components/VisionComponent.gd" id="3_boje0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
@@ -64,6 +65,11 @@ shape = SubResource("CapsuleShape3D_tsm8u")
 [node name="HealthComponent" type="Node" parent="Components" unique_id=117026683]
 script = ExtResource("2_boje0")
 metadata/_custom_type_script = "uid://3giqrawo0d1q"
+
+[node name="DetectionComponent" type="Node" parent="Components" unique_id=952832007 node_paths=PackedStringArray("vision")]
+script = ExtResource("3_3m52m")
+vision = NodePath("../../VisionComponent")
+metadata/_custom_type_script = "uid://503yns3v0h42"
 
 [node name="VisionComponent" type="Node3D" parent="." unique_id=995652408]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.25)
