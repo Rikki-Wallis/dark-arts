@@ -66,4 +66,11 @@ func force_detect():
 	detection_changed.emit(detection)
 	
 		
-		
+func get_debug_info() -> Dictionary:
+	if vision.player == null:
+		return {}
+	return {
+		"detect": "%.2f" % detection,
+		"light": "%.2f" % vision.player.light_detector.light_level,
+		"vis mult": "%.2f" % _visibility_multiplier(),
+	}

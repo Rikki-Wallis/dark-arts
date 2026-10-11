@@ -7,7 +7,6 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 @onready var vision = $VisionComponent
 @onready var nav_agent = $NavigationAgent3D
 @onready var alert_label = $AlertLabel
-@onready var state_label = $StateLabel
 @onready var detection = $Components/DetectionComponent
 @onready var stats = $Components/EnemyStats
 
@@ -22,7 +21,6 @@ var was_alerted = false
 func _ready():
 	add_to_group("enemy")
 	alert_label.visible = false
-	state_label.text = State.keys()[state]
 
 	detection.detection_changed.connect(_on_detection_changed)
 	detection.fully_detected.connect(_on_fully_detected)
@@ -119,7 +117,6 @@ func _change_state(new_state):
 		return
 	print("Guard: ", State.keys()[state], " -> ", State.keys()[new_state])
 	state = new_state
-	state_label.text = State.keys()[state]
 
 	# settup
 	match state:
@@ -205,3 +202,6 @@ func _update_alert_label(amount):
 		alert_label.text = "?"
 		alert_label.modulate = Color.YELLOW.lerp(Color.ORANGE_RED, amount)
 		alert_label.scale = Vector3.ONE * lerp(0.4, 1.0, amount)
+
+func get_debug_info() -> Dictionary:
+	return {"state": State.keys()[state]}
