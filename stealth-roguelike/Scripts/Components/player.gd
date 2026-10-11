@@ -17,6 +17,15 @@ const JUMP_VELOCITY = 4.5
 
 const SENSITIVITY = 0.003
 
+# footstep noise	
+const STEP_LENGTH = 2.0
+const NOISE_CROUCH = 1.5
+const NOISE_WALK = 5.0
+const NOISE_SPRINT = 10.0
+const NOISE_LAND = 8.0
+var step_distance = 0.0
+var was_on_floor = true
+
 # head bob
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
@@ -118,6 +127,8 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	move_and_slide()
 	
+	_update_footsteps(delta)
+	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
@@ -133,3 +144,27 @@ func _on_health_changed(current, max):
 func _on_died():
 	print("Player died")
 	get_tree().reload_current_scence()
+	
+func _update_footsteps(delta):
+	if is_on_floor() and not was_on_floor:
+		_make_noise(NOISE_LAND)
+	was_on_floor = is_on_floor()
+
+	if not is_on_floor():
+		return
+
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	step_distance += horizontal_speed * delta
+	if step_distance >= STEP_LENGTH:
+		step_distance = 0.0
+		_make_noise(_footstep_loudness())
+
+func _footstep_loudness() -> float:
+	if is_crouching:
+		return NOISE_CROUCH
+	if speed == SPRINT_SPEED:
+		return NOISE_SPRINT
+	return NOISE_WALK
+
+func _make_noise(loudness):
+	NoiseHelper.make(get_tree(), global_position + Vector3(0, 1, 0), loudness)

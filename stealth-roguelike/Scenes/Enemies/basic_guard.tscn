@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bvwk60h5kc0an" path="res://Scripts/Components/VisionComponent.gd" id="3_boje0"]
 [ext_resource type="Script" uid="uid://brauuvrnobkm7" path="res://Scripts/Components/EnemyStats.gd" id="4_14qer"]
 [ext_resource type="Script" uid="uid://b501v7t4ykt0s" path="res://Scripts/debug/debug_label.gd" id="6_e7jye"]
+[ext_resource type="Script" uid="uid://c1eifwiim1y7m" path="res://Scripts/Components/HearingComponent.gd" id="7_o2euh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
 albedo_color = Color(0, 1, 0, 1)
@@ -93,5 +94,10 @@ font_size = 64
 [node name="DebugLabel" type="Label3D" parent="." unique_id=1678463405 node_paths=PackedStringArray("sources")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 1, 0)
 script = ExtResource("6_e7jye")
-sources = [NodePath("../VisionComponent"), NodePath("../Components/DetectionComponent"), NodePath("..")]
+sources = [NodePath("../VisionComponent"), NodePath("../Components/DetectionComponent"), NodePath(".."), NodePath("../HearingComponent")]
 metadata/_custom_type_script = "uid://b501v7t4ykt0s"
+
+[node name="HearingComponent" type="Node3D" parent="." unique_id=820285356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_o2euh")
+metadata/_custom_type_script = "uid://c1eifwiim1y7m"

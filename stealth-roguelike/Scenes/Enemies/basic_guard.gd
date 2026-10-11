@@ -9,6 +9,7 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 @onready var alert_label = $AlertLabel
 @onready var detection = $Components/DetectionComponent
 @onready var stats = $Components/EnemyStats
+@onready var hearing = $HearingComponent
 
 var state = State.PATROL
 var patrol_index = 0
@@ -33,6 +34,8 @@ func _ready():
 
 	if not patrol_points.is_empty():
 		_go_to_next_point()
+	
+	hearing.noise_heard.connect(_on_noise_heard)
 
 func _physics_process(delta: float):
 	if not is_on_floor():
@@ -202,6 +205,25 @@ func _update_alert_label(amount):
 		alert_label.text = "?"
 		alert_label.modulate = Color.YELLOW.lerp(Color.ORANGE_RED, amount)
 		alert_label.scale = Vector3.ONE * lerp(0.4, 1.0, amount)
+
+
+# HEARING
+
+
+func _on_noise_heard(noise_position, _strength):
+	if state == State.ALERT:
+		return
+
+	last_seen_position = noise_position
+	if state == State.SEARCHING:
+		nav_agent.target_position = noise_position
+		search_timer = stats.search_time
+	else:
+		_change_state(State.SEARCHING)
+
+
+# DEBUG
+
 
 func get_debug_info() -> Dictionary:
 	return {"state": State.keys()[state]}
