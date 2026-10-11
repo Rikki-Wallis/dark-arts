@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var ceiling_check = $CeilingCheck
 @onready var interact_ray = $Head/Camera3D/InteractRay
 @onready var health = $Components/HealthComponent
+@onready var light_detector = $LightDetector2
 
 # vars
 var speed

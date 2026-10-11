@@ -5,6 +5,7 @@ signal fully_detected
 signal cleared
 
 @export var vision: VisionComponent
+@export var darkness_multiplier: float = 0.15
 @export var detect_time_near: float = 0.5
 @export var detect_time_far: float = 3.0
 @export var drain_delay: float = 1.5
@@ -50,6 +51,8 @@ func _visibility_multiplier() -> float:
 	var multiplier = 1.0
 	if vision.player.is_crouching:
 		multiplier *= crouch_multiplier
+	
+	multiplier *= lerp(darkness_multiplier, 1.0, vision.player.light_detector.light_level)
 	return multiplier
 
 # Jump straight to a full detection
