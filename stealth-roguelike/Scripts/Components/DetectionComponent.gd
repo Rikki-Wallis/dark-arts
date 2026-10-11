@@ -51,5 +51,16 @@ func _visibility_multiplier() -> float:
 	if vision.player.is_crouching:
 		multiplier *= crouch_multiplier
 	return multiplier
+
+# Jump straight to a full detection
+func force_detect():
+	if is_detected:
+		return
+	
+	detection = 1.0
+	is_detected = true
+	fully_detected.emit()
+	detection_changed.emit(detection)
+	
 		
 		
