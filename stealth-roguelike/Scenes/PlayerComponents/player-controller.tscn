@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://baoghpwjohphj" path="res://Scenes/PlayerComponents/light_detector.gd" id="8_bdnmd"]
 [ext_resource type="Script" uid="uid://bkcc746jscf7d" path="res://Scripts/Spells/SpellController.gd" id="9_spellctl"]
 [ext_resource type="Resource" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
+[ext_resource type="Resource" path="res://Resources/Spells/lure.tres" id="11_lure"]
+[ext_resource type="Resource" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
+[ext_resource type="Script" uid="uid://bjn0nuq454r74" path="res://Scripts/Spells/Spell.gd" id="12_spell"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
@@ -30,11 +33,12 @@ script = ExtResource("1_61t1w")
 [node name="RetroFilter" parent="." unique_id=1842354698 instance=ExtResource("2_fdcvf")]
 visible = false
 
-[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller") instance=ExtResource("2_35d83")]
+[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller", "spell_controller") instance=ExtResource("2_35d83")]
 script = ExtResource("3_bdnmd")
 health_component = NodePath("../Components/HealthComponent")
 light_detector = NodePath("../LightDetector2")
 weapon_controller = NodePath("../Components/WeaponController")
+spell_controller = NodePath("../Components/SpellController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682963021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0834157, 0.0394125)
@@ -75,7 +79,7 @@ aim_camera = NodePath("../../Head/Camera3D")
 
 [node name="SpellController" type="Node" parent="Components" unique_id=1635449781 node_paths=PackedStringArray("hand", "aim_camera")]
 script = ExtResource("9_spellctl")
-current_spell = ExtResource("10_extinguish")
+spells = Array[ExtResource("12_spell")]([ExtResource("10_extinguish"), ExtResource("11_lure"), ExtResource("13_cloak")])
 hand = NodePath("../../Head/Camera3D/LeftHand")
 aim_camera = NodePath("../../Head/Camera3D")
 

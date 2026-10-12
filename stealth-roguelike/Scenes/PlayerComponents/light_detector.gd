@@ -5,13 +5,15 @@ signal light_level_changed(value)
 @export var ambient: float = 0.1
 
 var light_level = 0.0
+# scales the final light level; effects like Shadow Cloak set this to 0
+var light_multiplier: float = 1.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var total = ambient
 	for light in get_tree().get_nodes_in_group("light"):
 		total += _light_contribution(light)
-	total = clamp(total, 0.0, 1.0)
+	total = clamp(total * light_multiplier, 0.0, 1.0)
 	
 	if not is_equal_approx(total, light_level):
 		light_level = total

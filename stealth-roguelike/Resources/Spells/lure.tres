@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LureSpell" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Spells/LureSpell.gd" id="1_lure"]
+
+[resource]
+script = ExtResource("1_lure")
+spell_name = "Lure"
+cooldown = 5.0

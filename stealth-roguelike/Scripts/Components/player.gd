@@ -68,6 +68,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			weapon_controller.equip(preload("res://Resources/Weapons/pistol.tres"))
 
+	# select a spell with 1, 2, 3
+	for i in 3:
+		if event.is_action_pressed("Spell%d" % (i + 1)):
+			spell_controller.select_spell(i)
+
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

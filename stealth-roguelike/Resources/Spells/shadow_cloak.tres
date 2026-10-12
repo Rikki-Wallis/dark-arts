@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShadowCloakSpell" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Spells/ShadowCloakSpell.gd" id="1_cloak"]
+
+[resource]
+script = ExtResource("1_cloak")
+spell_name = "Shadow Cloak"
+cooldown = 15.0

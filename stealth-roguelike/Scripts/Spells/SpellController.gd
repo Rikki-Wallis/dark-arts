@@ -1,22 +1,27 @@
 class_name SpellController extends Node
 
 signal spell_cast(spell)
-signal cooldown_changed(remaining, total)
+signal spell_selected(spell)
+signal cooldown_changed(spell, remaining, total)
 
-@export var current_spell: Spell
+@export var spells: Array[Spell] = []
 @export var hand: HandRig
 @export var aim_camera: Camera3D
 
-var cooldown_timer = 0.0
+var current_index = 0
+var cooldowns = {}   # spell -> seconds of cooldown left
 var pose_timer = 0.0
 
 func _ready():
 	assert(hand != null and aim_camera != null, "SpellController: assign Hand and Aim Camera in the Inspector")
 
 func _physics_process(delta):
-	if cooldown_timer > 0:
-		cooldown_timer = max(cooldown_timer - delta, 0.0)
-		cooldown_changed.emit(cooldown_timer, current_spell.cooldown)
+	# count every spell's cooldown down; keys() is a copy, so erasing inside the loop is safe
+	for spell in cooldowns.keys():
+		cooldowns[spell] = max(cooldowns[spell] - delta, 0.0)
+		cooldown_changed.emit(spell, cooldowns[spell], spell.cooldown)
+		if cooldowns[spell] == 0.0:
+			cooldowns.erase(spell)
 
 	# drop the hand back to idle after the cast pose
 	if pose_timer > 0:
@@ -24,17 +29,29 @@ func _physics_process(delta):
 		if pose_timer <= 0:
 			hand.play_idle()
 
+func current_spell() -> Spell:
+	if spells.is_empty():
+		return null
+	return spells[current_index]
+
+func select_spell(index: int):
+	if index < 0 or index >= spells.size():
+		return
+	current_index = index
+	spell_selected.emit(current_spell())
+
 func cast():
-	if current_spell == null or cooldown_timer > 0:
+	var spell = current_spell()
+	if spell == null or cooldowns.has(spell):
 		return
 	# the spell decides whether there was anything to cast at
-	if not current_spell.cast(self):
+	if not spell.cast(self):
 		return
 
-	cooldown_timer = current_spell.cooldown
-	hand.play_pose(current_spell.cast_animation)
-	pose_timer = current_spell.cast_pose_time
-	spell_cast.emit(current_spell)
+	cooldowns[spell] = spell.cooldown
+	hand.play_pose(spell.cast_animation)
+	pose_timer = spell.cast_pose_time
+	spell_cast.emit(spell)
 
 # where the player is aiming: from the camera, straight through the crosshair
 func aim_origin() -> Vector3:
@@ -42,3 +59,10 @@ func aim_origin() -> Vector3:
 
 func aim_direction() -> Vector3:
 	return -aim_camera.global_transform.basis.z
+
+# what the crosshair is pointing at, up to max_range away (empty if nothing)
+func aim_raycast(max_range: float) -> Dictionary:
+	var from = aim_origin()
+	var query = PhysicsRayQueryParameters3D.create(from, from + aim_direction() * max_range)
+	query.exclude = [owner.get_rid()]
+	return aim_camera.get_world_3d().direct_space_state.intersect_ray(query)

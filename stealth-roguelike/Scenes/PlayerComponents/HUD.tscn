@@ -34,6 +34,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
+[node name="SpellLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
 [node name="CrosshairLabel" type="Label" parent="." unique_id=2139897053]
 anchors_preset = 8
 anchor_left = 0.5
