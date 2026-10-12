@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3au0vfv653fu" path="res://Scenes/PlayerComponents/HUD.tscn" id="2_35d83"]
 [ext_resource type="Script" uid="uid://okgbboxgg2fh" path="res://Scripts/UI/hud.gd" id="3_bdnmd"]
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="3_scuu7"]
+[ext_resource type="PackedScene" uid="uid://dwotec30rcf6f" path="res://Scenes/PlayerComponents/right_hand.tscn" id="4_mko6t"]
 [ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Scripts/Weapons/weapon_controller.gd" id="4_nmame"]
 [ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Resources/Weapons/pistol.tres" id="5_mv8wy"]
 [ext_resource type="Script" uid="uid://baoghpwjohphj" path="res://Scenes/PlayerComponents/light_detector.gd" id="8_bdnmd"]
@@ -23,10 +24,11 @@ radius = 0.4
 [node name="PlayerController" type="CharacterBody3D" unique_id=1665905439 groups=["player"]]
 script = ExtResource("1_61t1w")
 
-[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector") instance=ExtResource("2_35d83")]
+[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller") instance=ExtResource("2_35d83")]
 script = ExtResource("3_bdnmd")
 health_component = NodePath("../Components/HealthComponent")
 light_detector = NodePath("../LightDetector2")
+weapon_controller = NodePath("../Components/WeaponController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682963021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0834157, 0.0394125)
@@ -43,6 +45,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=294815796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29999995, 0)
 
+[node name="RightHand" parent="Head/Camera3D" unique_id=1595347965 instance=ExtResource("4_mko6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.4, -0.4)
+
 [node name="LeftHand" parent="Head/Camera3D" unique_id=664663 instance=ExtResource("2_5s1k0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.4, -0.4)
 
@@ -55,10 +60,11 @@ target_position = Vector3(0, 0, -2.5)
 script = ExtResource("3_scuu7")
 metadata/_custom_type_script = "uid://3giqrawo0d1q"
 
-[node name="WeaponController" type="Node" parent="Components" unique_id=1368423174 node_paths=PackedStringArray("weapon_model_parent")]
+[node name="WeaponController" type="Node" parent="Components" unique_id=1368423174 node_paths=PackedStringArray("hand", "aim_camera")]
 script = ExtResource("4_nmame")
 current_weapon = ExtResource("5_mv8wy")
-weapon_model_parent = NodePath("../../Head/Camera3D")
+hand = NodePath("../../Head/Camera3D/RightHand")
+aim_camera = NodePath("../../Head/Camera3D")
 
 [node name="SpellController" type="Node" parent="Components" unique_id=1635449781]
 

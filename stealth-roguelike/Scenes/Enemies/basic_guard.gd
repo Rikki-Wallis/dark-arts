@@ -10,6 +10,8 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 @onready var detection = $Components/DetectionComponent
 @onready var stats = $Components/EnemyStats
 @onready var hearing = $HearingComponent
+@onready var health = $Components/HealthComponent
+
 
 var state = State.PATROL
 var patrol_index = 0
@@ -36,6 +38,9 @@ func _ready():
 		_go_to_next_point()
 	
 	hearing.noise_heard.connect(_on_noise_heard)
+	
+	health.died.connect(_on_died)
+
 
 func _physics_process(delta: float):
 	if not is_on_floor():
@@ -220,6 +225,20 @@ func _on_noise_heard(noise_position, _strength):
 		search_timer = stats.search_time
 	else:
 		_change_state(State.SEARCHING)
+
+
+# HEALTH AND DAMAGE
+
+
+func take_damage(amount):
+	health.take_damage(amount)
+	# getting shot means you know exactly where the shooter is
+	if health.current_health > 0:
+		last_seen_position = vision.player.global_position
+		detection.force_detect()
+
+func _on_died():
+	queue_free()
 
 
 # DEBUG

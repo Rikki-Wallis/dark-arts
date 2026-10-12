@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var interact_ray = $Head/Camera3D/InteractRay
 @onready var health = $Components/HealthComponent
 @onready var light_detector = $LightDetector2
+@onready var weapon_controller = $Components/WeaponController
 
 # vars
 var speed
@@ -62,7 +63,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("Toggle Debug"):
 		get_tree().call_group("debug_label", "toggle")
-		
+	
+	if event.is_action_pressed("Holster"):
+		if weapon_controller.current_weapon:
+			weapon_controller.equip(null)
+		else:
+			weapon_controller.equip(preload("res://Resources/Weapons/pistol.tres"))
+
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -87,6 +94,10 @@ func _physics_process(delta: float) -> void:
 		var target = interact_ray.get_collider()
 		if target.has_method("interact"):
 			target.interact(self)
+	
+	# Handle weapon
+	if Input.is_action_just_pressed("UseWeapon"):
+		weapon_controller.fire()
 	
 	# Handle jump
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
