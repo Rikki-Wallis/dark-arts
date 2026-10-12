@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ExtinguishSpell" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Spells/ExtinguishSpell.gd" id="1_extinguish"]
+
+[resource]
+script = ExtResource("1_extinguish")
+spell_name = "Extinguish"

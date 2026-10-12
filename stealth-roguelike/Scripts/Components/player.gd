@@ -2,13 +2,13 @@ extends CharacterBody3D
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-@onready var arms_anim = $Head/Camera3D/LeftHand/AnimationPlayer
 @onready var collision_shape = $CollisionShape3D
 @onready var ceiling_check = $CeilingCheck
 @onready var interact_ray = $Head/Camera3D/InteractRay
 @onready var health = $Components/HealthComponent
 @onready var light_detector = $LightDetector2
 @onready var weapon_controller = $Components/WeaponController
+@onready var spell_controller = $Components/SpellController
 
 # vars
 var speed
@@ -46,8 +46,6 @@ var is_crouching = false
 # Runs at beggining of scene, get rid of cursor
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	# Set idle animation for left hand
-	arms_anim.play("LeftHand")
 	# Make sure interact ray doesnt collide with player model
 	interact_ray.add_exception(self)
 	# Init health
@@ -98,7 +96,11 @@ func _physics_process(delta: float) -> void:
 	# Handle weapon
 	if Input.is_action_just_pressed("UseWeapon"):
 		weapon_controller.fire()
-	
+
+	# Handle spells
+	if Input.is_action_just_pressed("CastSpell"):
+		spell_controller.cast()
+
 	# Handle jump
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY

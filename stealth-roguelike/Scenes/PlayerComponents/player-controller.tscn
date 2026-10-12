@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Scripts/Weapons/weapon_controller.gd" id="4_nmame"]
 [ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Resources/Weapons/pistol.tres" id="5_mv8wy"]
 [ext_resource type="Script" uid="uid://baoghpwjohphj" path="res://Scenes/PlayerComponents/light_detector.gd" id="8_bdnmd"]
+[ext_resource type="Script" uid="uid://bkcc746jscf7d" path="res://Scripts/Spells/SpellController.gd" id="9_spellctl"]
+[ext_resource type="Resource" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
@@ -51,6 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.29999995, 0)
 
 [node name="LeftHand" parent="Head/Camera3D" unique_id=360285421 instance=ExtResource("4_mko6t")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.29999995, -0.25, -0.10000001)
+mount_animation = &"RightHandCast"
 
 [node name="RightHand" parent="Head/Camera3D" unique_id=1457739525 instance=ExtResource("2_mko6t")]
 transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 8.709011e-08, 0.9961947, 0.08715572, 7.619399e-09, 0.08715572, -0.9961947, 0.25, -0.35000002, -0.49999988)
@@ -70,7 +73,11 @@ current_weapon = ExtResource("5_mv8wy")
 hand = NodePath("../../Head/Camera3D/RightHand")
 aim_camera = NodePath("../../Head/Camera3D")
 
-[node name="SpellController" type="Node" parent="Components" unique_id=1635449781]
+[node name="SpellController" type="Node" parent="Components" unique_id=1635449781 node_paths=PackedStringArray("hand", "aim_camera")]
+script = ExtResource("9_spellctl")
+current_spell = ExtResource("10_extinguish")
+hand = NodePath("../../Head/Camera3D/LeftHand")
+aim_camera = NodePath("../../Head/Camera3D")
 
 [node name="CeilingCheck" type="ShapeCast3D" parent="." unique_id=594356344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)

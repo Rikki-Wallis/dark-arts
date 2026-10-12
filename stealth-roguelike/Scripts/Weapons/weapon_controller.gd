@@ -5,7 +5,7 @@ signal ammo_changed(current, max_ammo)
 signal fired
 
 @export var current_weapon: Weapon
-@export var hand: WeaponHand
+@export var hand: HandRig
 @export var aim_camera: Camera3D
 
 var current_weapon_model: Node3D
@@ -24,7 +24,10 @@ func equip(weapon: Weapon):
 	current_weapon = weapon
 	ammo = weapon.max_ammo if weapon else 0
 	_spawn_weapon_model()
-	hand.hold(weapon)
+	if weapon:
+		hand.play_pose(weapon.hold_animation)
+	else:
+		hand.play_idle()
 	weapon_changed.emit(weapon)
 	ammo_changed.emit(ammo, weapon.max_ammo if weapon else 0)
 
@@ -61,6 +64,6 @@ func _spawn_weapon_model():
 
 	if current_weapon and current_weapon.weapon_model:
 		current_weapon_model = current_weapon.weapon_model.instantiate()
-		hand.weapon_mount.add_child(current_weapon_model)
+		hand.mount.add_child(current_weapon_model)
 		# offset from the hand's weapon mount, so the weapon's grip sits in the palm
 		current_weapon_model.position = current_weapon.weapon_position

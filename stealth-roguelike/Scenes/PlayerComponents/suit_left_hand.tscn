@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://dw02d3dyfghy5"]
 
 [ext_resource type="PackedScene" uid="uid://b8osup676jn1k" path="res://Assets/Hands/SuitLeftHand.glb" id="1_ws4wf"]
+[ext_resource type="Script" uid="uid://c5d36krj0j7k" path="res://Scripts/Components/HandRig.gd" id="2_handrig"]
 
 [node name="SuitLeftHand" unique_id=360285421 instance=ExtResource("1_ws4wf")]
+script = ExtResource("2_handrig")
+idle_animation = &"LeftHandIdle"
+mount_animation = &"LeftHandCast"
 
 [node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(1664905945) index="0" unique_id=2062701412]
 bones/1/position = Vector3(0.0004532167, 0.82692, -0.05204817)
