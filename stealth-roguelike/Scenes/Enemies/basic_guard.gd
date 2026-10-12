@@ -4,6 +4,13 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 
 @export var patrol_points: Array[Marker3D] = []
 
+@export var idle_anim: StringName = &"Idle"
+@export var death_anim: StringName = &"Death"
+@export var walk_anim: StringName = &"Walk"
+@export var run_anim: StringName = &"Run"
+
+@export var outline_material: Material
+
 @onready var vision = $VisionComponent
 @onready var nav_agent = $NavigationAgent3D
 @onready var alert_label = $AlertLabel
@@ -11,6 +18,7 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 @onready var stats = $Components/EnemyStats
 @onready var hearing = $HearingComponent
 @onready var health = $Components/HealthComponent
+@onready var model_anim: AnimationPlayer = $Model/AnimationPlayer
 
 
 var state = State.PATROL
@@ -40,6 +48,8 @@ func _ready():
 	hearing.noise_heard.connect(_on_noise_heard)
 	
 	health.died.connect(_on_died)
+	
+	_apply_outline()
 
 
 func _physics_process(delta: float):
@@ -66,7 +76,7 @@ func _physics_process(delta: float):
 			_alert(delta)
 
 	move_and_slide()
-
+	_update_animation()
 
 # STATES
 
@@ -239,6 +249,31 @@ func take_damage(amount):
 
 func _on_died():
 	queue_free()
+
+
+# ANIMATION
+
+
+func _update_animation():
+	var speed = Vector2(velocity.x, velocity.z).length()
+	var anim_name = idle_anim
+	if speed > stats.walk_speed + 0.5:
+		anim_name = run_anim
+	elif speed > 0.1:
+		anim_name = walk_anim
+
+	if model_anim.current_animation != anim_name:
+		model_anim.play(anim_name, 0.2)
+
+
+# SHADER
+
+
+func _apply_outline():
+	if outline_material == null:
+		return
+	for mesh in $Model.find_children("*", "MeshInstance3D", true, false):
+		mesh.material_overlay = outline_material
 
 
 # DEBUG

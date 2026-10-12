@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dwotec30rcf6f"]
 
 [ext_resource type="PackedScene" uid="uid://ddbkppl81lybt" path="res://Assets/Hands/RightHand.glb" id="1_1wqce"]
-[ext_resource type="Script" path="res://Scripts/Components/WeaponHand.gd" id="2_hand"]
+[ext_resource type="Script" uid="uid://c5d36krj0j7k" path="res://Scripts/Components/WeaponHand.gd" id="2_hand"]
 
 [node name="right_hand" unique_id=1595347965 instance=ExtResource("1_1wqce")]
 script = ExtResource("2_hand")

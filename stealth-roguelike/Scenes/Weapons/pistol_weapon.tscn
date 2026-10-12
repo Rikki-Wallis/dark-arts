@@ -5,7 +5,7 @@
 [node name="PistolWeapon" type="Node3D" unique_id=452903656]
 
 [node name="PistolAsset" parent="." unique_id=1883131037 instance=ExtResource("1_1u7re")]
-transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, 0, 0, 0)
+transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 0.025, 0.02, 0.16)
 
 [node name="Muzzle" type="Marker3D" parent="." unique_id=688856959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, -0.13)

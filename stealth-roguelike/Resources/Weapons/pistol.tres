@@ -10,3 +10,4 @@ damage = 25.0
 max_ammo = 12
 weapon_model = ExtResource("2_kmy37")
 weapon_position = Vector3(0, -0.015, -0.08)
+hold_animation = &"RightHandGrip"

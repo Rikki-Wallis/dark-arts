@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dtfdat4o323pd" path="res://Scenes/Enemies/basic_guard.gd" id="1_mpsej"]
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="2_boje0"]
+[ext_resource type="Material" uid="uid://llf0en48vsvy" path="res://Assets/Materials/enemy_outline.tres" id="2_eglc7"]
 [ext_resource type="Script" uid="uid://503yns3v0h42" path="res://Scripts/Components/DetectionComponent.gd" id="3_3m52m"]
 [ext_resource type="Script" uid="uid://bvwk60h5kc0an" path="res://Scripts/Components/VisionComponent.gd" id="3_boje0"]
 [ext_resource type="Script" uid="uid://brauuvrnobkm7" path="res://Scripts/Components/EnemyStats.gd" id="4_14qer"]
 [ext_resource type="Script" uid="uid://b501v7t4ykt0s" path="res://Scripts/debug/debug_label.gd" id="6_e7jye"]
 [ext_resource type="Script" uid="uid://c1eifwiim1y7m" path="res://Scripts/Components/HearingComponent.gd" id="7_o2euh"]
+[ext_resource type="PackedScene" uid="uid://3lulrg33tehd" path="res://Assets/Characters/Suit.gltf" id="8_uaqk5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2dob"]
 albedo_color = Color(0, 1, 0, 1)
@@ -39,8 +41,10 @@ height = 1.9
 
 [node name="BasicGuard" type="CharacterBody3D" unique_id=739860987]
 script = ExtResource("1_mpsej")
+outline_material = ExtResource("2_eglc7")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1236891930]
+visible = false
 mesh = SubResource("CapsuleMesh_tsm8u")
 
 [node name="Head" type="MeshInstance3D" parent="Body" unique_id=1121247646]
@@ -64,7 +68,7 @@ shape = SubResource("CapsuleShape3D_tsm8u")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1899660066]
 
 [node name="VisionComponent" type="Node3D" parent="." unique_id=995652408]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.15)
 script = ExtResource("3_boje0")
 metadata/_custom_type_script = "uid://bvwk60h5kc0an"
 
@@ -98,6 +102,9 @@ sources = [NodePath("../VisionComponent"), NodePath("../Components/DetectionComp
 metadata/_custom_type_script = "uid://b501v7t4ykt0s"
 
 [node name="HearingComponent" type="Node3D" parent="." unique_id=820285356]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 script = ExtResource("7_o2euh")
 metadata/_custom_type_script = "uid://c1eifwiim1y7m"
+
+[node name="Model" parent="." unique_id=458374936 instance=ExtResource("8_uaqk5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.75, 0.1)

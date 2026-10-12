@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://mh3vxscxajj0"]
+
+[ext_resource type="Shader" uid="uid://sb3r2sxkk8s4" path="res://Shaders/retro_shader.gdshader" id="1_jpyal"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ck165"]
+shader = ExtResource("1_jpyal")
+shader_parameter/pixel_size = 3.0
+shader_parameter/color_steps = 16.0
+shader_parameter/dither = true
+
+[node name="RetroFilter" type="CanvasLayer" unique_id=1842354698]
+
+[node name="Filter" type="ColorRect" parent="." unique_id=1249183071]
+material = SubResource("ShaderMaterial_ck165")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -10,8 +10,8 @@ class_name WeaponHand extends Node3D
 @export var blend_time: float = 0.15
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var skeleton: Skeleton3D = $Armature_001/Skeleton3D
-@onready var weapon_slot: BoneAttachment3D = $Armature_001/Skeleton3D/WeaponSlot
+@onready var skeleton: Skeleton3D = find_children("*", "Skeleton3D", true, false)[0]
+@onready var weapon_slot: BoneAttachment3D = find_children("*", "BoneAttachment3D", true, false)[0]
 
 # weapons are added as children of this. While gripping, its axes match this
 # hand scene's axes (-Z forward, +Y up), so weapon scenes built the normal
