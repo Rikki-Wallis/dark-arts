@@ -160,8 +160,7 @@ func _on_health_changed(current, max):
 	print("Health: ", current, " / ", max)
 	
 func _on_died():
-	print("Player died")
-	get_tree().reload_current_scence()
+	Game.player_died()
 	
 func _update_footsteps(delta):
 	if is_on_floor() and not was_on_floor:

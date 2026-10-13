@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b8bwlw6kh4vas"]
+
+[ext_resource type="Script" uid="uid://dcjyn4lvhmhk1" path="res://Scripts/UI/end_screen.gd" id="1_8nohl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tsm8u"]
+font_size = 64
+
+[node name="EndScreen" type="Control" unique_id=607780557]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8nohl")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1128717450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.12941177, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1075862142]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1601864050]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1541018772]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_tsm8u")
+
+[node name="TimeLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1612354426]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1939747488]
+layout_mode = 2
+text = "TRY AGAIN"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1994948359]
+layout_mode = 2
+text = "QUIT"

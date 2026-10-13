@@ -6,3 +6,5 @@ class_name EnemyStats extends Node
 @export var search_time: float = 4.0
 @export var tracking_time: float = 2.0
 @export var catch_distance: float = 1.5
+@export var attack_damage: float = 25.0
+@export var attack_cooldown: float = 1.0   

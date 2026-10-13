@@ -8,6 +8,7 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 @export var death_anim: StringName = &"Death"
 @export var walk_anim: StringName = &"Walk"
 @export var run_anim: StringName = &"Run"
+@export var punch_right_anim: StringName = &"Punch_Right"
 
 @export var outline_material: Material
 
@@ -28,6 +29,7 @@ var search_timer = 0.0
 var last_seen_position = Vector3.ZERO
 var tracking_timer = 0.0
 var was_alerted = false
+var attack_timer = 0.0
 
 func _ready():
 	add_to_group("enemy")
@@ -55,6 +57,9 @@ func _ready():
 func _physics_process(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if attack_timer > 0:
+		attack_timer -= delta
 
 	# player last position
 	if vision.sees_player:
@@ -127,6 +132,7 @@ func _alert(delta):
 
 	if to_target.length() < stats.catch_distance:
 		_stop()
+		_try_attack()
 	else:
 		_move_along_path(stats.chase_speed, delta, false)
 
@@ -251,17 +257,37 @@ func _on_died():
 	queue_free()
 
 
+# ATTACK
+
+
+func _try_attack():
+	# only hit what we can actually see, never through a wall
+	if attack_timer > 0 or not vision.sees_player:
+		return
+	
+	model_anim.play(punch_right_anim, 0.1)
+	attack_timer = stats.attack_cooldown
+	await get_tree().create_timer(0.3).timeout  # roughly when the fist connects
+	if vision.sees_player:  # you might have dodged out of view in the meantime
+		vision.player.take_damage(stats.attack_damage)
+
+
 # ANIMATION
 
 
 func _update_animation():
+	
+	# let punch play through animation
+	if model_anim.current_animation == punch_right_anim:
+		return
+	
 	var speed = Vector2(velocity.x, velocity.z).length()
 	var anim_name = idle_anim
 	if speed > stats.walk_speed + 0.5:
 		anim_name = run_anim
 	elif speed > 0.1:
 		anim_name = walk_anim
-
+	
 	if model_anim.current_animation != anim_name:
 		model_anim.play(anim_name, 0.2)
 

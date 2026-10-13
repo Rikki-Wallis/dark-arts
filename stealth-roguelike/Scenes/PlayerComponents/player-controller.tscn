@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://bkcc746jscf7d" path="res://Scripts/Spells/SpellController.gd" id="9_spellctl"]
 [ext_resource type="Resource" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
 [ext_resource type="Resource" path="res://Resources/Spells/lure.tres" id="11_lure"]
-[ext_resource type="Resource" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
 [ext_resource type="Script" uid="uid://bjn0nuq454r74" path="res://Scripts/Spells/Spell.gd" id="12_spell"]
+[ext_resource type="Resource" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
