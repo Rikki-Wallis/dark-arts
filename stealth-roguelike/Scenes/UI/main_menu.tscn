@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dpchrp0ec7k6m"]
+
+[ext_resource type="Script" uid="uid://b2wpjdirvo2ax" path="res://Scenes/UI/main_menu.gd" id="1_5wsvm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tsm8u"]
+font_size = 64
+
+[node name="MainMenu" type="Control" unique_id=672105760]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsvm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=677472427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.23529412, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=849297475]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=314901161]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=471896627]
+layout_mode = 2
+text = "DARK ARTS"
+label_settings = SubResource("LabelSettings_tsm8u")
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=521250954]
+layout_mode = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=622093561]
+layout_mode = 2
+text = "Quit"

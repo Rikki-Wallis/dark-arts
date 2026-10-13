@@ -3,7 +3,7 @@ extends Control
 @onready var title_label = $CenterContainer/VBoxContainer/TitleLabel
 @onready var time_label = $CenterContainer/VBoxContainer/TimeLabel
 @onready var retry_button = $CenterContainer/VBoxContainer/RetryButton
-@onready var quit_button = $CenterContainer/VBoxContainer/QuitButton
+@onready var main_menu_button = $CenterContainer/VBoxContainer/MenuButton
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -12,4 +12,4 @@ func _ready():
 	time_label.text = "Time: %.1f s" % Game.run_time
 
 	retry_button.pressed.connect(Game.start_run)
-	quit_button.pressed.connect(get_tree().quit)
+	main_menu_button.pressed.connect(Game.go_to_menu)

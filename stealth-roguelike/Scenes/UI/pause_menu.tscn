@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dkf5ywhgtj2ca"]
+
+[ext_resource type="Script" uid="uid://c28vejuphlqes" path="res://Scripts/UI/pause_menu.gd" id="1_rrvs5"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=652822336]
+process_mode = 3
+layer = 10
+script = ExtResource("1_rrvs5")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1758089855]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.23529412)
+
+[node name="CenterContainer" type="CenterContainer" parent="Dim" unique_id=1277190014]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dim/CenterContainer" unique_id=223775204]
+layout_mode = 2
+
+[node name="PausedLabel" type="Label" parent="Dim/CenterContainer/VBoxContainer" unique_id=1456514913]
+layout_mode = 2
+text = "GAME PAUSED"
+
+[node name="ResumeButton" type="Button" parent="Dim/CenterContainer/VBoxContainer" unique_id=1142149257]
+layout_mode = 2
+text = "Resume"
+
+[node name="MenuButton" type="Button" parent="Dim/CenterContainer/VBoxContainer" unique_id=1678486691]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="Dim/CenterContainer/VBoxContainer" unique_id=271077778]
+layout_mode = 2
+text = "Quit Game"
