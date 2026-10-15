@@ -5,8 +5,7 @@ extends CanvasLayer
 @export var weapon_controller: WeaponController
 @export var spell_controller: SpellController
 
-@onready var health_bar = $MarginContainer/HBoxContainer/HealthBar
-@onready var light_gem = $MarginContainer/HBoxContainer/LightGem
+@onready var health_bar = $HealthFrame/HealthBar
 @onready var ammo_label = $MarginContainer/HBoxContainer/AmmoLabel
 @onready var spell_label = $MarginContainer/HBoxContainer/SpellLabel
 
@@ -30,12 +29,16 @@ func _ready():
 
 func _on_health_changed(current, max_hp):
 	health_bar.max_value = max_hp
-	# slide bar effect
+	# slide the health down to its new value
 	create_tween().tween_property(health_bar, "value", current, 0.25)
+	# brief flash: the whole bar pops toward white, then fades back
+	health_bar.modulate = Color(2.0, 2.0, 2.0)
+	create_tween().tween_property(health_bar, "modulate", Color.WHITE, 0.3)
+
 
 func _on_light_level_changed(value):
-	light_gem.color = GEM_DARK.lerp(GEM_LIT, value)
-	
+	pass
+
 func _on_ammo_changed(current, max_ammo):
 	ammo_label.text = "%d / %d" % [current, max_ammo]
 
