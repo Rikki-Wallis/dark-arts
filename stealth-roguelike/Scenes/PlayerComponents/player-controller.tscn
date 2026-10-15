@@ -9,8 +9,10 @@
 [ext_resource type="Script" uid="uid://3giqrawo0d1q" path="res://Scripts/Components/HealthComponent.gd" id="3_scuu7"]
 [ext_resource type="PackedScene" uid="uid://dw02d3dyfghy5" path="res://Scenes/PlayerComponents/suit_left_hand.tscn" id="4_mko6t"]
 [ext_resource type="Script" uid="uid://bq7ykhwbmruhn" path="res://Scripts/Weapons/weapon_controller.gd" id="4_nmame"]
+[ext_resource type="PackedScene" uid="uid://bh3nxwku2daek" path="res://Scenes/UI/two_tone_filter.tscn" id="4_sywkl"]
 [ext_resource type="Resource" uid="uid://bo7vwgxqrl83f" path="res://Resources/Weapons/pistol.tres" id="5_mv8wy"]
 [ext_resource type="Script" uid="uid://baoghpwjohphj" path="res://Scenes/PlayerComponents/light_detector.gd" id="8_bdnmd"]
+[ext_resource type="Shader" uid="uid://w27afctterik" path="res://Shaders/dark_outline.gdshader" id="9_kw66u"]
 [ext_resource type="Script" uid="uid://bkcc746jscf7d" path="res://Scripts/Spells/SpellController.gd" id="9_spellctl"]
 [ext_resource type="Resource" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
 [ext_resource type="Resource" path="res://Resources/Spells/lure.tres" id="11_lure"]
@@ -25,6 +27,20 @@ radius = 0.4560547
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0faf4"]
 radius = 0.45
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sywkl"]
+render_priority = -128
+shader = ExtResource("9_kw66u")
+shader_parameter/dark_color = Color(0.04, 0.06, 0.16, 1)
+shader_parameter/line_color = Color(0.85, 0.9, 1, 1)
+shader_parameter/lit_threshold = 0.03
+shader_parameter/lit_softness = 0.04
+shader_parameter/line_width = 1.5
+shader_parameter/depth_threshold = 0.04
+shader_parameter/normal_threshold = 0.4
+
+[sub_resource type="QuadMesh" id="QuadMesh_tsm8u"]
+size = Vector2(2, 2)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_tsm8u"]
 radius = 0.4
 
@@ -35,6 +51,9 @@ script = ExtResource("1_61t1w")
 [node name="PauseMenu" parent="." unique_id=652822336 instance=ExtResource("2_1xkrc")]
 
 [node name="RetroFilter" parent="." unique_id=1842354698 instance=ExtResource("2_fdcvf")]
+visible = false
+
+[node name="TwoToneFilter" parent="." unique_id=1955559326 instance=ExtResource("4_sywkl")]
 visible = false
 
 [node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller", "spell_controller") instance=ExtResource("2_35d83")]
@@ -59,6 +78,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=294815796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.29999995, 0)
 
+[node name="NightSight" type="OmniLight3D" parent="Head/Camera3D" unique_id=29061288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
+visible = false
+light_color = Color(0.69471943, 0.79634726, 1, 1)
+light_energy = 0.5
+light_specular = 0.0
+
 [node name="LeftHand" parent="Head/Camera3D" unique_id=360285421 instance=ExtResource("4_mko6t")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.29999995, -0.25, -0.10000001)
 mount_animation = &"RightHandCast"
@@ -68,6 +94,12 @@ transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 8.709011e-08, 0.9961947
 
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=493323899]
 target_position = Vector3(0, 0, -2.5)
+
+[node name="DarkFilter" type="MeshInstance3D" parent="Head/Camera3D" unique_id=1304545802]
+material_override = SubResource("ShaderMaterial_sywkl")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_tsm8u")
 
 [node name="Components" type="Node" parent="." unique_id=987009047]
 

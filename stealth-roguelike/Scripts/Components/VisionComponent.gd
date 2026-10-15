@@ -6,17 +6,24 @@ signal player_lost
 @export var view_distance: float = 15.0
 @export var view_angle: float = 90.0 # the vision code
 @export var show_cone: bool = false
+@export var touch_range: float = 1.2   # guards notice you this close, even in darkness
+
 
 var player = null
 var sees_player = false
-var cone: MeshInstance3D
+var cone: ClippedCone
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	_build_cone()
-	cone.visible = show_cone
+	# use the ClippedCone placed under this node in the scene, if there is one
+	for child in get_children():
+		if child is ClippedCone:
+			cone = child
+	if cone:
+		cone.visible = show_cone
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -39,6 +46,10 @@ func can_see_player() -> bool:
 	if to_player.length() > view_distance:
 		return false
 	
+	# darkness hides you completely, unless you're close enough to touch
+	if player.light_detector.light_level <= 0.0 and to_player.length() > touch_range:
+		return false
+	
 	# Second check if the player is in the view cone
 	var forward = -global_transform.basis.z
 	if rad_to_deg(forward.angle_to(to_player)) > view_angle / 2.0:
@@ -52,29 +63,11 @@ func can_see_player() -> bool:
 	
 
 func set_cone_visibility(value: bool):
-	cone.visible = value
+	if cone:
+		cone.visible = value
 
 func set_cone_colour(colour: Color):
-	cone.mesh.material.albedo_color = colour
-
-func _build_cone():
-	var mesh = CylinderMesh.new()
-	mesh.top_radius = 0.0
-	mesh.bottom_radius = view_distance * tan(deg_to_rad(view_angle / 2.0))
-	mesh.height = view_distance
-
-	var material = StandardMaterial3D.new()
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.cull_mode = BaseMaterial3D.CULL_DISABLED  # visible from inside too
-	material.albedo_color = Color(1, 1, 0, 0.15)
-	mesh.material = material
-
-	cone = MeshInstance3D.new()
-	cone.mesh = mesh
-	cone.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	cone.rotation.x = deg_to_rad(90)
-	cone.position.z = -view_distance / 2.0
-	add_child(cone)
+	if cone:
+		cone.set_cone_color(colour)
 	
 	

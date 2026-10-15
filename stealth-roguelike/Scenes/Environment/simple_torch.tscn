@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3sxehpq4tq14"]
 
 [ext_resource type="Script" uid="uid://djro2dxxll7yv" path="res://Scripts/Environment/torch_omni_light.gd" id="1_f1f11"]
+[ext_resource type="Script" uid="uid://dawbgu7i05k8" path="res://Scripts/Components/clipped_cone.gd" id="2_0ipyw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmfpo"]
 albedo_color = Color(0, 0.89411765, 1, 1)
@@ -13,10 +14,16 @@ material_override = SubResource("StandardMaterial3D_kmfpo")
 cast_shadow = 0
 size = Vector3(0.7, 0.7, 0.7)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=440157310 groups=["light"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050000012, 0)
+[node name="Spotlight" type="SpotLight3D" parent="." unique_id=321806204 groups=["light"]]
+transform = Transform3D(1, 0, 0, 0, 5.9604645e-08, 1, 0, -1, 5.9604645e-08, 0, 0.050000012, 0)
 light_energy = 2.0
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
-omni_range = 8.0
+spot_range = 6.0
+spot_attenuation = 0.2
+spot_angle = 50.0
+spot_angle_attenuation = 8.3376246e-05
 script = ExtResource("1_f1f11")
+
+[node name="LightCone" type="MeshInstance3D" parent="Spotlight" unique_id=553932192]
+script = ExtResource("2_0ipyw")

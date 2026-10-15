@@ -10,18 +10,25 @@ class_name LevelGenerator extends Node3D
 
 @onready var rooms_parent: Node3D = $NavigationRegion3D/Rooms
 @onready var player: Node3D = get_tree().get_first_node_in_group("player")
+@onready var nav_region: NavigationRegion3D = $NavigationRegion3D
+
+signal level_ready
 
 var rng = RandomNumberGenerator.new()
 var placed_rooms: Array[Room] = []
 var open_doorways: Array[Doorway] = []
 
 func _ready():
+	add_to_group("level_generator")
 	var base_seed = level_seed if level_seed != 0 else randi()
 	for retry in max_retries:
 		rng.seed = base_seed + retry
 		if _generate():
 			print("Level generated: seed %d, %d rooms" % [rng.seed, placed_rooms.size()])
 			_spawn_player()
+			await _bake_navmesh()
+			_start_guards()
+			level_ready.emit()
 			return
 		_clear()
 	push_error("LevelGenerator: couldn't build a level after %d tries" % max_retries)
@@ -116,3 +123,13 @@ func _clear():
 		room.free()
 	placed_rooms.clear()
 	open_doorways.clear()
+
+func _bake_navmesh():
+	# bake on a background thread so the game doesn't freeze, then wait for it
+	nav_region.bake_navigation_mesh(true)
+	await nav_region.bake_finished
+	# the navigation map picks up the new navmesh on the next physics frame
+	await get_tree().physics_frame
+
+func _start_guards():
+	get_tree().call_group("enemy", "activate")

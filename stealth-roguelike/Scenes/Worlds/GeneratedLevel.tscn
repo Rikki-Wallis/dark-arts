@@ -21,16 +21,19 @@ sky_material = SubResource("ProceduralSkyMaterial_807ki")
 
 [sub_resource type="Environment" id="Environment_hty12"]
 background_mode = 1
-background_color = Color(0.012721694, 1.3266039e-06, 0.12701824, 1)
 sky = SubResource("Sky_3m75e")
 ambient_light_source = 2
-ambient_light_color = Color(0, 0, 0.30588236, 1)
-ambient_light_energy = 0.2
+ambient_light_energy = 0.0
 tonemap_mode = 4
 ssao_enabled = true
 glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.02
+volumetric_fog_density = 2.0
+volumetric_fog_length = 20.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rjkp4"]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navmesh_source"
+agent_height = 2.0
 
 [node name="GeneratedLevel" type="Node3D" unique_id=2066880768]
 script = ExtResource("1_g85kb")
@@ -49,5 +52,6 @@ shadow_enabled = true
 [node name="PlayerController" parent="." unique_id=1665905439 instance=ExtResource("1_hty12")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=367605757]
+navigation_mesh = SubResource("NavigationMesh_rjkp4")
 
 [node name="Rooms" type="Node3D" parent="NavigationRegion3D" unique_id=514747916]

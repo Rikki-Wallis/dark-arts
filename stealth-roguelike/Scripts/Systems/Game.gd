@@ -2,7 +2,7 @@ extends Node
 # Owns the flow of the run i.e. which scen is showing and what happens on win or death.
 
 const MAIN_MENU = "res://Scenes/UI/main_menu.tscn"
-const LEVEL_SCENE =  "res://Scenes/Worlds/generated_level.tscn"
+const LEVEL_SCENE =  "res://Scenes/Worlds/GeneratedLevel.tscn"
 const END_SCENE = "res://Scenes/UI/end_screen.tscn"
 
 var run_time = 0.0

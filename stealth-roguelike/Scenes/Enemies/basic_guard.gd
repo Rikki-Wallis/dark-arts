@@ -38,20 +38,16 @@ func _ready():
 	detection.detection_changed.connect(_on_detection_changed)
 	detection.fully_detected.connect(_on_fully_detected)
 	detection.cleared.connect(_on_cleared)
-
+	hearing.noise_heard.connect(_on_noise_heard)
+	health.died.connect(_on_died)
+	_apply_outline()
+	
 	# wait for nav mesh to load
 	set_physics_process(false)
-	await get_tree().physics_frame
-	set_physics_process(true)
-
-	if not patrol_points.is_empty():
-		_go_to_next_point()
 	
-	hearing.noise_heard.connect(_on_noise_heard)
-	
-	health.died.connect(_on_died)
-	
-	_apply_outline()
+	if get_tree().get_first_node_in_group("level_generator") == null:
+		await get_tree().physics_frame
+		activate()
 
 
 func _physics_process(delta: float):
@@ -82,6 +78,7 @@ func _physics_process(delta: float):
 
 	move_and_slide()
 	_update_animation()
+
 
 # STATES
 
@@ -172,6 +169,10 @@ func _move_along_path(speed, delta, face_path = true):
 	if face_path:
 		_face_direction(direction, delta)
 
+func activate():
+	set_physics_process(true)
+	if not patrol_points.is_empty():
+		_go_to_next_point()
 
 func _stop():
 	velocity.x = 0
@@ -186,7 +187,7 @@ func _face_direction(direction, delta):
 		return
 	# turn so that -z (forward) points to direction
 	var target_angle = atan2(-direction.x, -direction.z)
-	rotation.y = lerp_angle(rotation.y, target_angle, delta * 8.0)
+	global_rotation.y = lerp_angle(global_rotation.y, target_angle, delta * 8.0)
 
 
 # DETECTION

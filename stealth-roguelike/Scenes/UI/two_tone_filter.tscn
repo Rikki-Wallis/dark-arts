@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bh3nxwku2daek"]
+
+[ext_resource type="Shader" uid="uid://bsw4bncox0bt2" path="res://Shaders/two_tone_lighting.gdshader" id="1_ah18l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsm8u"]
+shader = ExtResource("1_ah18l")
+shader_parameter/threshold = 0.12
+shader_parameter/softness = 0.02
+shader_parameter/shadow_min = 0.45
+shader_parameter/shadow_max = 1.3
+shader_parameter/lit_saturation = 1.2
+shader_parameter/shadow_colour = Color(0.1, 0.12, 0.28, 1)
+
+[node name="TwoToneFilter" type="CanvasLayer" unique_id=1955559326]
+
+[node name="Filter" type="ColorRect" parent="." unique_id=88352284]
+material = SubResource("ShaderMaterial_tsm8u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
