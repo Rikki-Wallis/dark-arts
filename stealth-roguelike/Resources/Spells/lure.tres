@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="LureSpell" format=3]
+[gd_resource type="Resource" script_class="LureSpell" format=3 uid="uid://c4r3rhnaprnm8"]
 
-[ext_resource type="Script" path="res://Scripts/Spells/LureSpell.gd" id="1_lure"]
+[ext_resource type="Texture2D" uid="uid://cvi3ngd3bdxbm" path="res://Assets/Spell Icons/Lure.png" id="1_kycbt"]
+[ext_resource type="Script" uid="uid://cvhuqnt5l14ti" path="res://Scripts/Spells/LureSpell.gd" id="1_lure"]
 
 [resource]
 script = ExtResource("1_lure")
 spell_name = "Lure"
 cooldown = 5.0
+icon = ExtResource("1_kycbt")

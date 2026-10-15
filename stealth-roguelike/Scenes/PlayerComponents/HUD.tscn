@@ -20,6 +20,20 @@ bg_color = Color(0.023529412, 0.007843138, 0.22352941, 1)
 
 [node name="Hud" type="CanvasLayer" unique_id=1759086954]
 
+[node name="SpellBar" type="HBoxContainer" parent="." unique_id=1238192770]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -121.0
+offset_right = 147.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=567728428]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -33,9 +47,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 
 [node name="AmmoLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1624054484]
-layout_mode = 2
-
-[node name="SpellLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=507481438]
 layout_mode = 2
 
 [node name="HealthFrame" type="PanelContainer" parent="." unique_id=811957718]

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ShadowCloakSpell" format=3]
+[gd_resource type="Resource" script_class="ShadowCloakSpell" format=3 uid="uid://b6c87xawpksxa"]
 
-[ext_resource type="Script" path="res://Scripts/Spells/ShadowCloakSpell.gd" id="1_cloak"]
+[ext_resource type="Texture2D" uid="uid://bk33w2j208qx" path="res://Assets/Spell Icons/Shadow Cloak.png" id="1_b8sx5"]
+[ext_resource type="Script" uid="uid://31bx3q41nj1r" path="res://Scripts/Spells/ShadowCloakSpell.gd" id="1_cloak"]
 
 [resource]
 script = ExtResource("1_cloak")
 spell_name = "Shadow Cloak"
 cooldown = 15.0
+icon = ExtResource("1_b8sx5")

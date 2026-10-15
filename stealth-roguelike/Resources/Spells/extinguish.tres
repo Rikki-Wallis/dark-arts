@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="ExtinguishSpell" format=3]
+[gd_resource type="Resource" script_class="ExtinguishSpell" format=3 uid="uid://uxw8shqf4kt5"]
 
-[ext_resource type="Script" path="res://Scripts/Spells/ExtinguishSpell.gd" id="1_extinguish"]
+[ext_resource type="Texture2D" uid="uid://c37nf7yl4oo5v" path="res://Assets/Spell Icons/Extinguish.png" id="1_b8x61"]
+[ext_resource type="Script" uid="uid://87pkv06d0eju" path="res://Scripts/Spells/ExtinguishSpell.gd" id="1_extinguish"]
 
 [resource]
 script = ExtResource("1_extinguish")
 spell_name = "Extinguish"
+icon = ExtResource("1_b8x61")
