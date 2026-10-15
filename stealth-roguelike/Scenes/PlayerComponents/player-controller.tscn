@@ -14,10 +14,11 @@
 [ext_resource type="Script" uid="uid://baoghpwjohphj" path="res://Scenes/PlayerComponents/light_detector.gd" id="8_bdnmd"]
 [ext_resource type="Shader" uid="uid://w27afctterik" path="res://Shaders/dark_outline.gdshader" id="9_kw66u"]
 [ext_resource type="Script" uid="uid://bkcc746jscf7d" path="res://Scripts/Spells/SpellController.gd" id="9_spellctl"]
-[ext_resource type="Resource" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
-[ext_resource type="Resource" path="res://Resources/Spells/lure.tres" id="11_lure"]
+[ext_resource type="Resource" uid="uid://uxw8shqf4kt5" path="res://Resources/Spells/extinguish.tres" id="10_extinguish"]
+[ext_resource type="Resource" uid="uid://c4r3rhnaprnm8" path="res://Resources/Spells/lure.tres" id="11_lure"]
 [ext_resource type="Script" uid="uid://bjn0nuq454r74" path="res://Scripts/Spells/Spell.gd" id="12_spell"]
-[ext_resource type="Resource" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
+[ext_resource type="Resource" uid="uid://b6c87xawpksxa" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
+[ext_resource type="Script" uid="uid://bua8f7jknfxjj" path="res://Scripts/Components/mana_component.gd" id="14_mana"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
@@ -56,12 +57,13 @@ visible = false
 [node name="TwoToneFilter" parent="." unique_id=1955559326 instance=ExtResource("4_sywkl")]
 visible = false
 
-[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller", "spell_controller") instance=ExtResource("2_35d83")]
+[node name="Hud" parent="." unique_id=1759086954 node_paths=PackedStringArray("health_component", "light_detector", "weapon_controller", "spell_controller", "mana_component") instance=ExtResource("2_35d83")]
 script = ExtResource("3_bdnmd")
 health_component = NodePath("../Components/HealthComponent")
 light_detector = NodePath("../LightDetector2")
 weapon_controller = NodePath("../Components/WeaponController")
 spell_controller = NodePath("../Components/SpellController")
+mana_component = NodePath("../Components/ManaComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682963021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0834157, 0.0394125)
@@ -114,11 +116,19 @@ current_weapon = ExtResource("5_mv8wy")
 hand = NodePath("../../Head/Camera3D/RightHand")
 aim_camera = NodePath("../../Head/Camera3D")
 
-[node name="SpellController" type="Node" parent="Components" unique_id=1635449781 node_paths=PackedStringArray("hand", "aim_camera")]
+[node name="SpellController" type="Node" parent="Components" unique_id=1635449781 node_paths=PackedStringArray("hand", "aim_camera", "mana")]
 script = ExtResource("9_spellctl")
 spells = Array[ExtResource("12_spell")]([ExtResource("10_extinguish"), ExtResource("11_lure"), ExtResource("13_cloak")])
 hand = NodePath("../../Head/Camera3D/LeftHand")
 aim_camera = NodePath("../../Head/Camera3D")
+mana = NodePath("../ManaComponent")
+
+[node name="ManaComponent" type="Node" parent="Components" unique_id=1893256414 node_paths=PackedStringArray("light_detector")]
+script = ExtResource("14_mana")
+max_mana = 50.0
+regen_in_darkness = 2.0
+drain_in_light = 5.0
+light_detector = NodePath("../../LightDetector2")
 
 [node name="CeilingCheck" type="ShapeCast3D" parent="." unique_id=594356344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)

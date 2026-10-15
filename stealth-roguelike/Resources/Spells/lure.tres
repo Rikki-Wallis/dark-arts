@@ -8,3 +8,4 @@ script = ExtResource("1_lure")
 spell_name = "Lure"
 cooldown = 5.0
 icon = ExtResource("1_kycbt")
+mana_cost = 15.0

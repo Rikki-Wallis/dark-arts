@@ -8,3 +8,4 @@ script = ExtResource("1_cloak")
 spell_name = "Shadow Cloak"
 cooldown = 15.0
 icon = ExtResource("1_b8sx5")
+mana_cost = 40.0

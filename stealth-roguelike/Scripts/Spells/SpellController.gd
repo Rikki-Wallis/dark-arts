@@ -7,6 +7,7 @@ signal cooldown_changed(spell, remaining, total)
 @export var spells: Array[Spell] = []
 @export var hand: HandRig
 @export var aim_camera: Camera3D
+@export var mana: ManaComponent
 
 var current_index = 0
 var cooldowns = {}   # spell -> seconds of cooldown left
@@ -44,10 +45,16 @@ func cast():
 	var spell = current_spell()
 	if spell == null or cooldowns.has(spell):
 		return
+	# not enough mana (the HUD already shows the slot faded)
+	if mana and not mana.can_afford(spell.mana_cost):
+		return
 	# the spell decides whether there was anything to cast at
 	if not spell.cast(self):
 		return
 
+	# only pay for spells that actually worked
+	if mana:
+		mana.spend(spell.mana_cost)
 	cooldowns[spell] = spell.cooldown
 	hand.play_pose(spell.cast_animation)
 	pose_timer = spell.cast_pose_time

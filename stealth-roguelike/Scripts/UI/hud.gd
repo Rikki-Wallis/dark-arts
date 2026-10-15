@@ -4,12 +4,18 @@ extends CanvasLayer
 @export var light_detector: LightDetector
 @export var weapon_controller: WeaponController
 @export var spell_controller: SpellController
+@export var mana_component: ManaComponent
 
 @onready var health_bar = $HealthFrame/HealthBar
+@onready var mana_bar = $ManaFrame/ManaBar
+@onready var mana_frame = $ManaFrame
 @onready var ammo_label = $MarginContainer/HBoxContainer/AmmoLabel 
 @onready var spell_bar = $SpellBar
 
 var spell_slots: Array[SpellSlotUI] = []
+
+const MANA_FRAME_DARK = Color(0.95, 0.96, 1.0)   # white: hidden in darkness, mana filling
+const MANA_FRAME_LIT = Color(1.0, 0.65, 0.3)     # warm: standing in light, mana draining
 
 func _ready():
 	health_bar.max_value = health_component.max_health
@@ -27,6 +33,11 @@ func _ready():
 	spell_controller.spell_cast.connect(_on_spell_cast)
 	_on_spell_selected(spell_controller.current_spell())
 
+	# max_mana, not current_mana: the ManaComponent's own _ready (which fills it) runs after this one
+	mana_bar.max_value = mana_component.max_mana
+	mana_bar.value = mana_component.max_mana
+	mana_component.mana_changed.connect(_on_mana_changed)
+
 
 func _on_health_changed(current, max_hp):
 	health_bar.max_value = max_hp
@@ -37,8 +48,17 @@ func _on_health_changed(current, max_hp):
 	create_tween().tween_property(health_bar, "modulate", Color.WHITE, 0.3)
 
 
+# the mana frame glows warm while you're lit (draining) and white in darkness (filling)
 func _on_light_level_changed(value):
-	pass
+	var style = mana_frame.get_theme_stylebox("panel") as StyleBoxFlat
+	style.border_color = MANA_FRAME_DARK.lerp(MANA_FRAME_LIT, value)
+
+func _on_mana_changed(current, max_mana):
+	mana_bar.max_value = max_mana
+	# mana changes a little every frame, so it already moves smoothly without a tween
+	mana_bar.value = current
+	for slot in spell_slots:
+		slot.affordable = current >= slot.spell.mana_cost
 
 func _on_ammo_changed(current, max_ammo):
 	ammo_label.text = "%d / %d" % [current, max_ammo]

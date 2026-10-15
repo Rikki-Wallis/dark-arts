@@ -6,6 +6,7 @@ class_name LightDetector extends Node3D
 signal light_level_changed(value)
 
 var light_level = 0.0
+var raw_light_level = 0.0
 # effects like Shadow Cloak set this to 0
 var light_multiplier: float = 1.0
 
@@ -15,6 +16,7 @@ func _physics_process(_delta: float) -> void:
 		if _is_lit_by(light):
 			lit = 1.0
 			break
+	raw_light_level = lit
 	lit *= light_multiplier
 
 	if not is_equal_approx(lit, light_level):

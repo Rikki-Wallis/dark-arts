@@ -8,6 +8,7 @@ class_name Spell extends Resource
 @export var cast_animation: StringName = &"LeftHandCast"
 @export var cast_pose_time: float = 0.4   # how long the hand holds the cast pose
 @export var icon: Texture2D
+@export var mana_cost: float = 20.0
 
 # What the spell actually does. Return false if there was nothing to cast at
 # (then no cooldown is used).

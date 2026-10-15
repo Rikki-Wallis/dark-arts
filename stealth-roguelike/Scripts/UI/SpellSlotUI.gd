@@ -14,6 +14,12 @@ var selected = false:
 		selected = value
 		queue_redraw()
 
+# false while the player doesn't have enough mana for this spell
+var affordable = true:
+	set(value):
+		affordable = value
+		queue_redraw()
+
 # 1 = just cast, 0 = ready
 var cooldown_fraction = 0.0:
 	set(value):
@@ -37,15 +43,16 @@ func _draw():
 	if cooldown_fraction > 0.0:
 		draw_rect(Rect2(0, 0, size.x, size.y * cooldown_fraction), line_color)
 
-	# icon if the spell has one, otherwise its first letter
+	# icon if the spell has one, otherwise its first letter; faded when you can't afford it
+	var ink = Color(line_color, 1.0 if affordable else 0.3)
 	if spell and spell.icon:
-		draw_texture_rect(spell.icon, box.grow(-10), false)
+		draw_texture_rect(spell.icon, box.grow(-10), false, Color(1, 1, 1, ink.a))
 	elif spell:
 		var letter = spell.spell_name.left(1)
 		var baseline = Vector2(0, size.y * 0.5 + 10)
 		# navy outline first, so the letter shows on both the navy body and the white cooldown
 		draw_string_outline(font, baseline, letter, HORIZONTAL_ALIGNMENT_CENTER, size.x, 28, 6, body_color)
-		draw_string(font, baseline, letter, HORIZONTAL_ALIGNMENT_CENTER, size.x, 28, line_color)
+		draw_string(font, baseline, letter, HORIZONTAL_ALIGNMENT_CENTER, size.x, 28, ink)
 
 	# frame and key number: bright and bold when selected, thin and dim otherwise
 	var frame_color = line_color if selected else Color(line_color, 0.4)
