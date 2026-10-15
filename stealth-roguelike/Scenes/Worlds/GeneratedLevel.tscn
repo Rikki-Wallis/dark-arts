@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bmw1g4si2qteh"]
+
+[ext_resource type="Script" uid="uid://1j2iooshtx4j" path="res://Scripts/LevelGeneration/LevelGenerator.gd" id="1_g85kb"]
+[ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/PlayerComponents/player-controller.tscn" id="1_hty12"]
+[ext_resource type="PackedScene" uid="uid://bsvrs5gso2ok0" path="res://Scenes/LevelKits/Jail/start_room.tscn" id="2_c3q8l"]
+[ext_resource type="PackedScene" uid="uid://cfcy8tyrid0rp" path="res://Scenes/LevelKits/Jail/exit_room.tscn" id="3_k8oh1"]
+[ext_resource type="PackedScene" uid="uid://dsvt34b3vb7i3" path="res://Scenes/LevelKits/Jail/Connectors/corner.tscn" id="4_4ew6k"]
+[ext_resource type="PackedScene" uid="uid://dnn3xj7cmix55" path="res://Scenes/LevelKits/Jail/Connectors/straight_corridor.tscn" id="5_5drqt"]
+[ext_resource type="PackedScene" uid="uid://debxhopw47ope" path="res://Scenes/LevelKits/Jail/Connectors/t_junction.tscn" id="6_3psfe"]
+[ext_resource type="PackedScene" uid="uid://ox3yvjxhdhm4" path="res://Scenes/LevelKits/Jail/GuardRooms/cell_block.tscn" id="7_sd2xd"]
+[ext_resource type="PackedScene" uid="uid://ut1vl66i485l" path="res://Scenes/LevelKits/Jail/GuardRooms/guard_post.tscn" id="8_hqp30"]
+[ext_resource type="PackedScene" uid="uid://d3tb0w44rq7d4" path="res://Scenes/LevelKits/Jail/GuardRooms/mess_hall.tscn" id="9_fvqo0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_807ki"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+energy_multiplier = 0.1
+
+[sub_resource type="Sky" id="Sky_3m75e"]
+sky_material = SubResource("ProceduralSkyMaterial_807ki")
+
+[sub_resource type="Environment" id="Environment_hty12"]
+background_mode = 1
+background_color = Color(0.012721694, 1.3266039e-06, 0.12701824, 1)
+sky = SubResource("Sky_3m75e")
+ambient_light_source = 2
+ambient_light_color = Color(0, 0, 0.30588236, 1)
+ambient_light_energy = 0.2
+tonemap_mode = 4
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+
+[node name="GeneratedLevel" type="Node3D" unique_id=2066880768]
+script = ExtResource("1_g85kb")
+start_room = ExtResource("2_c3q8l")
+exit_room = ExtResource("3_k8oh1")
+room_pool = Array[PackedScene]([ExtResource("4_4ew6k"), ExtResource("5_5drqt"), ExtResource("6_3psfe"), ExtResource("7_sd2xd"), ExtResource("8_hqp30"), ExtResource("9_fvqo0"), ExtResource("5_5drqt")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=822197805]
+environment = SubResource("Environment_hty12")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1878266060]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 13.988202, 0)
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="PlayerController" parent="." unique_id=1665905439 instance=ExtResource("1_hty12")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=367605757]
+
+[node name="Rooms" type="Node3D" parent="NavigationRegion3D" unique_id=514747916]

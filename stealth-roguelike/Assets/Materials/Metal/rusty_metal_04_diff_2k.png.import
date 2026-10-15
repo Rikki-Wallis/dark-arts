@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmfdgfdfadpwc"
-path.s3tc="res://.godot/imported/cracked_concrete_02_rough_2k.png-e1d5346d257d96692869f1ba3d9aa9a2.s3tc.ctex"
+uid="uid://phhvxl2fa316"
+path.s3tc="res://.godot/imported/rusty_metal_04_diff_2k.png-6b933fda17a183ee1e10e70788c4a0c3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Materials/cracked_concrete_02_rough_2k.png"
-dest_files=["res://.godot/imported/cracked_concrete_02_rough_2k.png-e1d5346d257d96692869f1ba3d9aa9a2.s3tc.ctex"]
+source_file="res://Assets/Materials/Metal/rusty_metal_04_diff_2k.png"
+dest_files=["res://.godot/imported/rusty_metal_04_diff_2k.png-6b933fda17a183ee1e10e70788c4a0c3.s3tc.ctex"]
 
 [params]
 

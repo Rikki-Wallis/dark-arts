@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/PlayerComponents/player-controller.tscn" id="1_i6xie"]
 [ext_resource type="PackedScene" uid="uid://c3sxehpq4tq14" path="res://Scenes/Environment/simple_torch.tscn" id="2_d8ng0"]
 [ext_resource type="PackedScene" uid="uid://win42gxvgdq8" path="res://Scenes/Environment/level_goal.tscn" id="3_3m75e"]
-[ext_resource type="Material" uid="uid://bbud4e264jynf" path="res://Assets/Materials/cracked_concrete.tres" id="3_hh22q"]
+[ext_resource type="Material" uid="uid://bbud4e264jynf" path="res://Assets/Materials/Concrete/cracked_concrete.tres" id="3_hh22q"]
 [ext_resource type="PackedScene" uid="uid://d1ncl3323vjom" path="res://Scenes/Enemies/basic_guard.tscn" id="4_56eia"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d8ng0"]
@@ -11,13 +11,13 @@ sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 energy_multiplier = 0.1
 
-[sub_resource type="Sky" id="Sky_3m75e"]
+[sub_resource type="Sky" id="Sky_hh22q"]
 sky_material = SubResource("ProceduralSkyMaterial_d8ng0")
 
 [sub_resource type="Environment" id="Environment_56eia"]
 background_mode = 1
 background_color = Color(0.012721694, 1.3266039e-06, 0.12701824, 1)
-sky = SubResource("Sky_3m75e")
+sky = SubResource("Sky_hh22q")
 ambient_light_source = 2
 ambient_light_color = Color(0, 0, 0.30588236, 1)
 ambient_light_energy = 0.2

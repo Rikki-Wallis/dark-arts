@@ -13,7 +13,7 @@ config_version=5
 config/name="dark-arts"
 config/description="Wizard stealth roguelike"
 config/version="0.0.0"
-run/main_scene="uid://cxnwmkadu4sqr"
+run/main_scene="uid://bmw1g4si2qteh"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
