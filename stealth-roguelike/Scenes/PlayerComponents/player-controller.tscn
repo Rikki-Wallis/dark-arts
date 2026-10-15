@@ -29,6 +29,7 @@ radius = 0.45
 radius = 0.4
 
 [node name="PlayerController" type="CharacterBody3D" unique_id=1665905439 groups=["player"]]
+collision_mask = 3
 script = ExtResource("1_61t1w")
 
 [node name="PauseMenu" parent="." unique_id=652822336 instance=ExtResource("2_1xkrc")]

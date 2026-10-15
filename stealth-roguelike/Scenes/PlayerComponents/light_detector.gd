@@ -30,7 +30,7 @@ func _light_contribution(light: OmniLight3D):
 		return 0.0
 	
 	# is there stuff between light and player
-	var query = PhysicsRayQueryParameters3D.create(light.global_position, global_position)
+	var query = PhysicsRayQueryParameters3D.create(light.global_position, global_position, 1)
 	query.exclude = [owner.get_rid()]
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	if not result.is_empty():

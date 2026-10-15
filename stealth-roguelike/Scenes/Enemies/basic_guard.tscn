@@ -40,6 +40,7 @@ radius = 0.3
 height = 1.9
 
 [node name="BasicGuard" type="CharacterBody3D" unique_id=739860987]
+collision_mask = 3
 script = ExtResource("1_mpsej")
 outline_material = ExtResource("2_eglc7")
 

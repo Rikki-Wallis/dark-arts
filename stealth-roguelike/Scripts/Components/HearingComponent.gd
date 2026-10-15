@@ -29,7 +29,7 @@ func hear_noise(noise_position: Vector3, loudness: float):
 	noise_heard.emit(noise_position, strength)
 
 func _is_blocked(noise_position: Vector3) -> bool:
-	var query = PhysicsRayQueryParameters3D.create(global_position, noise_position)
+	var query = PhysicsRayQueryParameters3D.create(global_position, noise_position, 1)
 	query.exclude = [owner.get_rid()]
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	return not result.is_empty() and not result.collider.is_in_group("player")

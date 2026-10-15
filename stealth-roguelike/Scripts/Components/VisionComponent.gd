@@ -45,7 +45,7 @@ func can_see_player() -> bool:
 		return false
 	
 	# Final, line of site check
-	var query = PhysicsRayQueryParameters3D.create(global_position, target)
+	var query = PhysicsRayQueryParameters3D.create(global_position, target, 1)
 	query.exclude = [owner.get_rid()]
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	return not result.is_empty() and result.collider == player
