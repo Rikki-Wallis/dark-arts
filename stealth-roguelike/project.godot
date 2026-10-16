@@ -129,3 +129,8 @@ Pause={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[navigation]
+
+3d/default_cell_size=0.125
+3d/default_cell_height=0.1

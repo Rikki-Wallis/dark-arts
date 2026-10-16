@@ -23,7 +23,11 @@ const STEP_LENGTH = 2.0
 const NOISE_CROUCH = 1.5
 const NOISE_WALK = 5.0
 const NOISE_SPRINT = 10.0
-const NOISE_LAND = 8.0
+# landing noise grows with how fast you were falling when you hit the ground
+const LAND_SILENT_SPEED = 3.0    # m/s: slower landings make no noise (a drop of about 0.5 m)
+const LAND_LOUDEST_SPEED = 10.0  # m/s: landings this fast are as loud as it gets (a drop of about 5 m)
+const NOISE_LAND_MIN = 3.0       # radius of the quietest landing that still makes a noise
+const NOISE_LAND_MAX = 12.0      # radius of the loudest landing
 var step_distance = 0.0
 var was_on_floor = true
 
@@ -143,9 +147,12 @@ func _physics_process(delta: float) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+
+	# how fast we're falling, read BEFORE move_and_slide, which zeroes it on landing
+	var fall_speed = -velocity.y
 	move_and_slide()
-	
-	_update_footsteps(delta)
+
+	_update_footsteps(delta, fall_speed)
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
@@ -162,9 +169,9 @@ func _on_health_changed(current, max):
 func _on_died():
 	Game.player_died()
 	
-func _update_footsteps(delta):
+func _update_footsteps(delta, fall_speed):
 	if is_on_floor() and not was_on_floor:
-		_make_noise(NOISE_LAND)
+		_make_landing_noise(fall_speed)
 	was_on_floor = is_on_floor()
 
 	if not is_on_floor():
@@ -182,6 +189,14 @@ func _footstep_loudness() -> float:
 	if speed == SPRINT_SPEED:
 		return NOISE_SPRINT
 	return NOISE_WALK
+
+# small drops (and the floor flickering for a frame at a seam) are silent;
+# bigger falls get louder, up to NOISE_LAND_MAX
+func _make_landing_noise(fall_speed):
+	if fall_speed < LAND_SILENT_SPEED:
+		return
+	var t = clamp(inverse_lerp(LAND_SILENT_SPEED, LAND_LOUDEST_SPEED, fall_speed), 0.0, 1.0)
+	_make_noise(lerp(NOISE_LAND_MIN, NOISE_LAND_MAX, t))
 
 func _make_noise(loudness):
 	NoiseHelper.make(get_tree(), global_position + Vector3(0, 1, 0), loudness)

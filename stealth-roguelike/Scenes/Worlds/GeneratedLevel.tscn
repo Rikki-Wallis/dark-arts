@@ -31,9 +31,14 @@ volumetric_fog_density = 2.0
 volumetric_fog_length = 20.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rjkp4"]
+geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navmesh_source"
-agent_height = 2.0
+agent_height = 1.9
+cell_size = 0.125
+agent_radius = 0.375
+cell_height = 0.1
+agent_max_climb = 0.3
 
 [node name="GeneratedLevel" type="Node3D" unique_id=2066880768]
 script = ExtResource("1_g85kb")
