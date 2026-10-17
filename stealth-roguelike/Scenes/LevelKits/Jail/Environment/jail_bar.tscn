@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cnccgwbklvn87"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_metal.tres" id="93_flat_metal"]
 
-[ext_resource type="Material" uid="uid://ysyo3ry1trkk" path="res://Assets/Materials/Metal/rusty_metal.tres" id="1_lsm6d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tsm8u"]
-material = ExtResource("1_lsm6d")
 size = Vector3(5, 0.2, 0.2)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nj5fp"]
@@ -13,7 +12,6 @@ data = PackedVector3Array(-2.5, 0.099999994, 0.099999994, 2.5, 0.099999994, 0.09
 data = PackedVector3Array(-2.5, 0.099999994, 0.099999994, 2.5, 0.099999994, 0.099999994, -2.5, -0.099999994, 0.099999994, 2.5, 0.099999994, 0.099999994, 2.5, -0.099999994, 0.099999994, -2.5, -0.099999994, 0.099999994, 2.5, 0.099999994, -0.099999994, -2.5, 0.099999994, -0.099999994, 2.5, -0.099999994, -0.099999994, -2.5, 0.099999994, -0.099999994, -2.5, -0.099999994, -0.099999994, 2.5, -0.099999994, -0.099999994, 2.5, 0.099999994, 0.099999994, 2.5, 0.099999994, -0.099999994, 2.5, -0.099999994, 0.099999994, 2.5, 0.099999994, -0.099999994, 2.5, -0.099999994, -0.099999994, 2.5, -0.099999994, 0.099999994, -2.5, 0.099999994, -0.099999994, -2.5, 0.099999994, 0.099999994, -2.5, -0.099999994, -0.099999994, -2.5, 0.099999994, 0.099999994, -2.5, -0.099999994, 0.099999994, -2.5, -0.099999994, -0.099999994, 2.5, 0.099999994, 0.099999994, -2.5, 0.099999994, 0.099999994, 2.5, 0.099999994, -0.099999994, -2.5, 0.099999994, 0.099999994, -2.5, 0.099999994, -0.099999994, 2.5, 0.099999994, -0.099999994, -2.5, -0.099999994, 0.099999994, 2.5, -0.099999994, 0.099999994, -2.5, -0.099999994, -0.099999994, 2.5, -0.099999994, 0.099999994, 2.5, -0.099999994, -0.099999994, -2.5, -0.099999994, -0.099999994)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tsm8u"]
-material = ExtResource("1_lsm6d")
 top_radius = 0.1
 bottom_radius = 0.1
 height = 2.65
@@ -60,6 +58,7 @@ data = PackedVector3Array(0, 1.3249999, 0.099999994, 0.0098, 1.3249999, 0.0995, 
 [node name="JailBar" type="Node3D" unique_id=2031754893]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1288733532]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.065, 0)
 mesh = SubResource("BoxMesh_tsm8u")
 
@@ -70,6 +69,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_nj5fp")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="." unique_id=5632477]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, 0)
 mesh = SubResource("BoxMesh_tsm8u")
 
@@ -80,6 +80,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_lsm6d")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="." unique_id=199594498]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -91,6 +92,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_knu2w")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1817768722]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -102,6 +104,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_844ob")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1823997129]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5999999, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -113,6 +116,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_am47i")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1601631941]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1999999, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -124,6 +128,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_fi8l3")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=855217991]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79999995, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -135,6 +140,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_p4lhm")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1251031049]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39999992, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -146,6 +152,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_g8rar")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=892509125]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4505806e-08, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -157,6 +164,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_ofyh6")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1416154310]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40000013, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -168,6 +176,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_a10es")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="." unique_id=648640240]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000001, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -179,6 +188,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_xhsmc")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="." unique_id=1768166952]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -190,6 +200,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_4egn2")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=565189428]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -201,6 +212,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_aihyi")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="." unique_id=78875179]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")
@@ -212,6 +224,7 @@ collision_layer = 2
 shape = SubResource("ConcavePolygonShape3D_6gke6")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="." unique_id=1555417499]
+material_override = ExtResource("93_flat_metal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.4000001, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_tsm8u")

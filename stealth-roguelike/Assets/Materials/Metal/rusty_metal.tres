@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://ysyo3ry1trkk"]
 
-[ext_resource type="Texture2D" uid="uid://phhvxl2fa316" path="res://Assets/Materials/Metal/rusty_metal_04_diff_2k.png" id="1_ij72i"]
-[ext_resource type="Texture2D" uid="uid://bf4ue400jt554" path="res://Assets/Materials/Metal/rusty_metal_04_nor_gl_2k.png" id="2_p87pv"]
-[ext_resource type="Texture2D" uid="uid://wwm6pqkeimj4" path="res://Assets/Materials/Metal/rusty_metal_04_rough_2k.png" id="3_ydvme"]
+[ext_resource type="Texture2D" uid="uid://1vnsm2erunmr" path="res://Assets/Materials/Metal/metal_01_color_2k.png" id="1_ij72i"]
+[ext_resource type="Texture2D" uid="uid://2ynrxyvp5wmi" path="res://Assets/Materials/Metal/metal_01_normal_gl_2k.png" id="2_p87pv"]
+[ext_resource type="Texture2D" uid="uid://c4kk7xp2be40t" path="res://Assets/Materials/Metal/metal_01_roughness_2k.png" id="3_ydvme"]
 
 [resource]
 albedo_texture = ExtResource("1_ij72i")

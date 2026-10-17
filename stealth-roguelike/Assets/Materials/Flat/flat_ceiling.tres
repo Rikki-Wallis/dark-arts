@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://Shaders/flat_color.gdshader" id="1_flat"]
+
+[resource]
+shader = ExtResource("1_flat")
+shader_parameter/albedo = Color(0.28, 0.29, 0.32, 1)
+shader_parameter/lit_brightness = 1.0

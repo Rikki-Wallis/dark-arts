@@ -1,49 +1,45 @@
 [gd_scene format=3 uid="uid://cfcy8tyrid0rp"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_ceiling.tres" id="92_flat_ceiling"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_floor.tres" id="90_flat_floor"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_wall.tres" id="91_flat_wall"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_wood.tres" id="94_flat_wood"]
 
 [ext_resource type="Script" uid="uid://plvtgtx1vs80" path="res://Scripts/LevelGeneration/room.gd" id="1_m4edc"]
 [ext_resource type="PackedScene" uid="uid://b3bt5co5rin76" path="res://Scenes/LevelKits/door_way.tscn" id="2_3util"]
 [ext_resource type="PackedScene" uid="uid://c3sxehpq4tq14" path="res://Scenes/Environment/simple_torch.tscn" id="3_2r745"]
-[ext_resource type="Material" uid="uid://bbud4e264jynf" path="res://Assets/Materials/Concrete/cracked_concrete.tres" id="3_qgspa"]
-[ext_resource type="Material" uid="uid://ysyo3ry1trkk" path="res://Assets/Materials/Metal/rusty_metal.tres" id="4_l01dk"]
 [ext_resource type="PackedScene" uid="uid://win42gxvgdq8" path="res://Scenes/Environment/level_goal.tscn" id="4_qgspa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_l01dk"]
-material = ExtResource("3_qgspa")
 size = Vector3(0.2, 3, 8.400001)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fyfpi"]
 data = PackedVector3Array(-0.099999994, 1.5, 4.2, 0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, -0.099999994, 1.5, -4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, -0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, -0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, 1.5, -4.2, 0.099999994, 1.5, -4.2, -0.099999994, -1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, -1.5, -4.2, -0.099999994, -1.5, -4.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tugk1"]
-material = ExtResource("3_qgspa")
 size = Vector3(0.2, 3, 3)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_37ikn"]
 data = PackedVector3Array(-0.099999994, 1.5, 1.5, 0.099999994, 1.5, 1.5, -0.099999994, -1.5, 1.5, 0.099999994, 1.5, 1.5, 0.099999994, -1.5, 1.5, -0.099999994, -1.5, 1.5, 0.099999994, 1.5, -1.5, -0.099999994, 1.5, -1.5, 0.099999994, -1.5, -1.5, -0.099999994, 1.5, -1.5, -0.099999994, -1.5, -1.5, 0.099999994, -1.5, -1.5, 0.099999994, 1.5, 1.5, 0.099999994, 1.5, -1.5, 0.099999994, -1.5, 1.5, 0.099999994, 1.5, -1.5, 0.099999994, -1.5, -1.5, 0.099999994, -1.5, 1.5, -0.099999994, 1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, -1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, -1.5, 1.5, -0.099999994, -1.5, -1.5, 0.099999994, 1.5, 1.5, -0.099999994, 1.5, 1.5, 0.099999994, 1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, 1.5, -1.5, 0.099999994, 1.5, -1.5, -0.099999994, -1.5, 1.5, 0.099999994, -1.5, 1.5, -0.099999994, -1.5, -1.5, 0.099999994, -1.5, 1.5, 0.099999994, -1.5, -1.5, -0.099999994, -1.5, -1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t33o5"]
-material = ExtResource("3_qgspa")
 size = Vector3(0.2, 3, 3)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pyfpv"]
 data = PackedVector3Array(-0.099999994, 1.5, 1.5, 0.099999994, 1.5, 1.5, -0.099999994, -1.5, 1.5, 0.099999994, 1.5, 1.5, 0.099999994, -1.5, 1.5, -0.099999994, -1.5, 1.5, 0.099999994, 1.5, -1.5, -0.099999994, 1.5, -1.5, 0.099999994, -1.5, -1.5, -0.099999994, 1.5, -1.5, -0.099999994, -1.5, -1.5, 0.099999994, -1.5, -1.5, 0.099999994, 1.5, 1.5, 0.099999994, 1.5, -1.5, 0.099999994, -1.5, 1.5, 0.099999994, 1.5, -1.5, 0.099999994, -1.5, -1.5, 0.099999994, -1.5, 1.5, -0.099999994, 1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, -1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, -1.5, 1.5, -0.099999994, -1.5, -1.5, 0.099999994, 1.5, 1.5, -0.099999994, 1.5, 1.5, 0.099999994, 1.5, -1.5, -0.099999994, 1.5, 1.5, -0.099999994, 1.5, -1.5, 0.099999994, 1.5, -1.5, -0.099999994, -1.5, 1.5, 0.099999994, -1.5, 1.5, -0.099999994, -1.5, -1.5, 0.099999994, -1.5, 1.5, 0.099999994, -1.5, -1.5, -0.099999994, -1.5, -1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ljtr"]
-material = ExtResource("3_qgspa")
 size = Vector3(0.2, 3, 8.400001)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y01o8"]
 data = PackedVector3Array(-0.099999994, 1.5, 4.2, 0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, -0.099999994, 1.5, -4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, -0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, -0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, 1.5, -4.2, 0.099999994, 1.5, -4.2, -0.099999994, -1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, -1.5, -4.2, -0.099999994, -1.5, -4.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_61thh"]
-material = ExtResource("3_qgspa")
 size = Vector3(0.2, 3, 8.400001)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_no00g"]
 data = PackedVector3Array(-0.099999994, 1.5, 4.2, 0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, -0.099999994, 1.5, -4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, 1.5, -4.2, 0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, -0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, 1.5, 4.2, -0.099999994, 1.5, 4.2, 0.099999994, 1.5, -4.2, -0.099999994, 1.5, 4.2, -0.099999994, 1.5, -4.2, 0.099999994, 1.5, -4.2, -0.099999994, -1.5, 4.2, 0.099999994, -1.5, 4.2, -0.099999994, -1.5, -4.2, 0.099999994, -1.5, 4.2, 0.099999994, -1.5, -4.2, -0.099999994, -1.5, -4.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0fjst"]
-material = ExtResource("3_qgspa")
 size = Vector3(8.4, 0.1, 8.4)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2gal3"]
@@ -53,7 +49,6 @@ data = PackedVector3Array(-4.2, 0.049999997, 4.2, 4.2, 0.049999997, 4.2, -4.2, -
 data = PackedVector3Array(-4.2, 0.049999997, 4.2, 4.2, 0.049999997, 4.2, -4.2, -0.049999997, 4.2, 4.2, 0.049999997, 4.2, 4.2, -0.049999997, 4.2, -4.2, -0.049999997, 4.2, 4.2, 0.049999997, -4.2, -4.2, 0.049999997, -4.2, 4.2, -0.049999997, -4.2, -4.2, 0.049999997, -4.2, -4.2, -0.049999997, -4.2, 4.2, -0.049999997, -4.2, 4.2, 0.049999997, 4.2, 4.2, 0.049999997, -4.2, 4.2, -0.049999997, 4.2, 4.2, 0.049999997, -4.2, 4.2, -0.049999997, -4.2, 4.2, -0.049999997, 4.2, -4.2, 0.049999997, -4.2, -4.2, 0.049999997, 4.2, -4.2, -0.049999997, -4.2, -4.2, 0.049999997, 4.2, -4.2, -0.049999997, 4.2, -4.2, -0.049999997, -4.2, 4.2, 0.049999997, 4.2, -4.2, 0.049999997, 4.2, 4.2, 0.049999997, -4.2, -4.2, 0.049999997, 4.2, -4.2, 0.049999997, -4.2, 4.2, 0.049999997, -4.2, -4.2, -0.049999997, 4.2, 4.2, -0.049999997, 4.2, -4.2, -0.049999997, -4.2, 4.2, -0.049999997, 4.2, 4.2, -0.049999997, -4.2, -4.2, -0.049999997, -4.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sqmqx"]
-material = ExtResource("4_l01dk")
 size = Vector3(1.5, 1.3, 0.3)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dwvx6"]
@@ -74,6 +69,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 [node name="Walls" type="Node3D" parent="Geometry" unique_id=402871387]
 
 [node name="Wall1" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1235665947]
+material_override = ExtResource("91_flat_wall")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.1525574e-07, 1.45, 4.1)
 mesh = SubResource("BoxMesh_l01dk")
 
@@ -83,6 +79,7 @@ mesh = SubResource("BoxMesh_l01dk")
 shape = SubResource("ConcavePolygonShape3D_fyfpi")
 
 [node name="Wall3" type="MeshInstance3D" parent="Geometry/Walls" unique_id=894975996]
+material_override = ExtResource("91_flat_wall")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6999998, 1.45, -4.1000004)
 mesh = SubResource("BoxMesh_tugk1")
 
@@ -92,6 +89,7 @@ mesh = SubResource("BoxMesh_tugk1")
 shape = SubResource("ConcavePolygonShape3D_37ikn")
 
 [node name="Wall4" type="MeshInstance3D" parent="Geometry/Walls" unique_id=90110187]
+material_override = ExtResource("91_flat_wall")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.7000003, 1.45, -4.1000004)
 mesh = SubResource("BoxMesh_t33o5")
 
@@ -101,6 +99,7 @@ mesh = SubResource("BoxMesh_t33o5")
 shape = SubResource("ConcavePolygonShape3D_pyfpv")
 
 [node name="Wall2" type="MeshInstance3D" parent="Geometry/Walls" unique_id=19846687]
+material_override = ExtResource("91_flat_wall")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.0999994, 1.45, 1.1920929e-07)
 mesh = SubResource("BoxMesh_7ljtr")
 
@@ -110,6 +109,7 @@ mesh = SubResource("BoxMesh_7ljtr")
 shape = SubResource("ConcavePolygonShape3D_y01o8")
 
 [node name="Wall5" type="MeshInstance3D" parent="Geometry/Walls" unique_id=467976689]
+material_override = ExtResource("91_flat_wall")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.1000004, 1.45, -7.1525574e-07)
 mesh = SubResource("BoxMesh_61thh")
 
@@ -121,6 +121,7 @@ shape = SubResource("ConcavePolygonShape3D_no00g")
 [node name="Ceilings" type="Node3D" parent="Geometry" unique_id=550545500]
 
 [node name="Ceiling1" type="MeshInstance3D" parent="Geometry/Ceilings" unique_id=1878479851]
+material_override = ExtResource("92_flat_ceiling")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3841858e-07, 3, -2.3841858e-07)
 layers = 129
 mesh = SubResource("BoxMesh_0fjst")
@@ -133,6 +134,7 @@ shape = SubResource("ConcavePolygonShape3D_2gal3")
 [node name="Floors" type="Node3D" parent="Geometry" unique_id=509626970]
 
 [node name="Floor1" type="MeshInstance3D" parent="Geometry/Floors" unique_id=868856101]
+material_override = ExtResource("90_flat_floor")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4901161e-08, 0)
 layers = 129
 mesh = SubResource("BoxMesh_0fjst")
@@ -145,6 +147,7 @@ shape = SubResource("ConcavePolygonShape3D_86vl5")
 [node name="LowCover" type="Node3D" parent="Geometry" unique_id=811231693]
 
 [node name="LowCover1" type="MeshInstance3D" parent="Geometry/LowCover" unique_id=204720907]
+material_override = ExtResource("94_flat_wood")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70000005, -1.5)
 mesh = SubResource("BoxMesh_sqmqx")
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqunhy0h2hwnh"]
 
 [ext_resource type="Material" uid="uid://ysyo3ry1trkk" path="res://Assets/Materials/Metal/rusty_metal.tres" id="1_ofam3"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_metal.tres" id="93_flat_metal"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_railside"]
 material = ExtResource("1_ofam3")
@@ -75,15 +76,18 @@ data = PackedVector3Array(-0.75, 0.049999997, 0.099999994, 0.75, 0.049999997, 0.
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2012150159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5999999, 0, 0)
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("BoxMesh_railside")
 
 [node name="BottomRailRight" type="MeshInstance3D" parent="." unique_id=495749390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 0)
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("BoxMesh_railside")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="." unique_id=1003086093]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("BoxMesh_47ma4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D15" unique_id=2120149736]
@@ -95,6 +99,7 @@ shape = SubResource("ConcavePolygonShape3D_47ma4")
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="." unique_id=1282323679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D13" unique_id=1994358836]
@@ -106,6 +111,7 @@ shape = SubResource("ConcavePolygonShape3D_ofam3")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1221693488]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=1621178076]
@@ -117,6 +123,7 @@ shape = SubResource("ConcavePolygonShape3D_oo0jt")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=504267717]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5999999, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=1945182809]
@@ -128,6 +135,7 @@ shape = SubResource("ConcavePolygonShape3D_8pn4e")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=2051026642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1999999, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4" unique_id=1748994565]
@@ -139,6 +147,7 @@ shape = SubResource("ConcavePolygonShape3D_ddmbe")
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1637402390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79999995, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D6" unique_id=1582813745]
@@ -150,6 +159,7 @@ shape = SubResource("ConcavePolygonShape3D_ye68o")
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=1983491509]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39999998, 2.4125001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_oo0jt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D7" unique_id=95720372]
@@ -161,6 +171,7 @@ shape = SubResource("ConcavePolygonShape3D_dhbah")
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1043874367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 2.4125001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_oo0jt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D8" unique_id=546478816]
@@ -172,6 +183,7 @@ shape = SubResource("ConcavePolygonShape3D_t1gbd")
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="." unique_id=495457069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40000004, 2.4125001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_oo0jt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D9" unique_id=256831122]
@@ -183,6 +195,7 @@ shape = SubResource("ConcavePolygonShape3D_g838u")
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="." unique_id=1066647413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D10" unique_id=107984445]
@@ -194,6 +207,7 @@ shape = SubResource("ConcavePolygonShape3D_b1eva")
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="." unique_id=1364984151]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000001, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D16" unique_id=1396967555]
@@ -205,6 +219,7 @@ shape = SubResource("ConcavePolygonShape3D_yetmq")
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=1303737477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D11" unique_id=1526270555]
@@ -216,6 +231,7 @@ shape = SubResource("ConcavePolygonShape3D_mgy0q")
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="." unique_id=247554706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D12" unique_id=89525946]
@@ -227,6 +243,7 @@ shape = SubResource("ConcavePolygonShape3D_c3xmf")
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="." unique_id=1135669747]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.4000001, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("CylinderMesh_ofam3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D14" unique_id=1174405875]
@@ -238,6 +255,7 @@ shape = SubResource("ConcavePolygonShape3D_rtn5v")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1046861786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.099, 0)
 layers = 2
+material_override = ExtResource("93_flat_metal")
 mesh = SubResource("BoxMesh_tsm8u")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5" unique_id=264149070]

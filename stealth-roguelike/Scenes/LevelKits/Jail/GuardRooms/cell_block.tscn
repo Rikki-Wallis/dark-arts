@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://b3bt5co5rin76" path="res://Scenes/LevelKits/door_way.tscn" id="2_sersl"]
 [ext_resource type="PackedScene" uid="uid://dqunhy0h2hwnh" path="res://Scenes/LevelKits/Jail/Environment/jail_bar_doorway.tscn" id="2_wxod7"]
 [ext_resource type="Material" uid="uid://bbud4e264jynf" path="res://Assets/Materials/Concrete/cracked_concrete.tres" id="3_36h28"]
-[ext_resource type="PackedScene" uid="uid://c3sxehpq4tq14" path="res://Scenes/Environment/simple_torch.tscn" id="3_wxod7"]
 [ext_resource type="PackedScene" uid="uid://d1ncl3323vjom" path="res://Scenes/Enemies/basic_guard.tscn" id="5_wxod7"]
+[ext_resource type="PackedScene" uid="uid://ivdgudgabeub" path="res://Scenes/Environment/light.tscn" id="6_k5t1b"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_floor.tres" id="90_flat_floor"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_wall.tres" id="91_flat_wall"]
+[ext_resource type="Material" path="res://Assets/Materials/Flat/flat_ceiling.tres" id="92_flat_ceiling"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7rnww"]
 material = ExtResource("3_36h28")
@@ -71,6 +74,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 [node name="Ceiling1" type="MeshInstance3D" parent="Geometry/Ceiling" unique_id=722687816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, 3, -0.024999142)
 layers = 129
+material_override = ExtResource("92_flat_ceiling")
 mesh = SubResource("BoxMesh_7rnww")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Ceiling/Ceiling1" unique_id=887466450]
@@ -103,6 +107,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3.5
 
 [node name="Wall1" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1757174012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 1.45, -0.025000095)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_36h28")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall1" unique_id=582702188]
@@ -112,6 +117,7 @@ shape = SubResource("ConcavePolygonShape3D_bxbov")
 
 [node name="Wall2" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1109370046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 1.45, -0.024999857)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_36h28")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall2" unique_id=1016738783]
@@ -121,6 +127,7 @@ shape = SubResource("ConcavePolygonShape3D_36h28")
 
 [node name="Wall3" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1493447073]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.7, 1.45, 7.3999996)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_k5t1b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall3" unique_id=137994684]
@@ -130,6 +137,7 @@ shape = SubResource("ConcavePolygonShape3D_k5t1b")
 
 [node name="Wall4" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1445400861]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.6750002, 1.45, 7.4000006)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_bpda7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall4" unique_id=1211030075]
@@ -139,6 +147,7 @@ shape = SubResource("ConcavePolygonShape3D_bpda7")
 
 [node name="Wall6" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1435007171]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.7, 1.45, -7.4500003)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_k5t1b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall6" unique_id=1542285275]
@@ -148,6 +157,7 @@ shape = SubResource("ConcavePolygonShape3D_7rnww")
 
 [node name="Wall7" type="MeshInstance3D" parent="Geometry/Walls" unique_id=1793686941]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.6750002, 1.45, -7.4500003)
+material_override = ExtResource("91_flat_wall")
 mesh = SubResource("BoxMesh_bpda7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Walls/Wall7" unique_id=1467795859]
@@ -169,6 +179,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.0
 [node name="Floor1" type="MeshInstance3D" parent="Geometry/Floors" unique_id=161915660]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4901161e-08, 0)
 layers = 129
+material_override = ExtResource("90_flat_floor")
 mesh = SubResource("BoxMesh_bxbov")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Floors/Floor1" unique_id=2124213673]
@@ -178,11 +189,26 @@ shape = SubResource("ConcavePolygonShape3D_rda6x")
 
 [node name="Lights" type="Node3D" parent="." unique_id=100015751]
 
-[node name="SimpleTorch" parent="Lights" unique_id=180359974 instance=ExtResource("3_wxod7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4915864, -4.8)
+[node name="Light" parent="Lights" unique_id=1470598383 instance=ExtResource("6_k5t1b")]
+transform = Transform3D(1, 0, 0, 0, 0.76604444, -0.6427876, 0, 0.6427876, 0.76604444, 0, 2.7500002, 7.1000004)
+light_range = 7.0
+angle = 30.0
+energy = 5.0
+attenuation = 0.0
 
-[node name="SimpleTorch2" parent="Lights" unique_id=1605762347 instance=ExtResource("3_wxod7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4915864, 4.85)
+[node name="Light2" parent="Lights" unique_id=834028002 instance=ExtResource("6_k5t1b")]
+transform = Transform3D(1, 0, 0, 0, 0.7660444, 0.6427875, 0, -0.6427875, 0.7660444, 0, 2.75, -7.1)
+light_range = 7.0
+angle = 30.0
+energy = 5.0
+attenuation = 0.0
+
+[node name="Light3" parent="Lights" unique_id=122469251 instance=ExtResource("6_k5t1b")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.75, 0)
+light_range = 4.0
+angle = 30.0
+energy = 5.0
+attenuation = 0.0
 
 [node name="PatrolPoints" type="Node3D" parent="." unique_id=948854687]
 

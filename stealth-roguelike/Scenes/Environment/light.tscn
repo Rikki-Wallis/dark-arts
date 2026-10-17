@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ivdgudgabeub"]
+
+[ext_resource type="Script" uid="uid://cus47wy6qd47v" path="res://Scripts/Environment/light.gd" id="1_nqt1r"]
+[ext_resource type="Script" uid="uid://dawbgu7i05k8" path="res://Scripts/Components/clipped_cone.gd" id="2_th3th"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugry3"]
+albedo_color = Color(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_me50d"]
+inner_radius = 0.08
+outer_radius = 0.14
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ugry3"]
+top_radius = 0.11
+bottom_radius = 0.15
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nqt1r"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th3th"]
+albedo_color = Color(0.9909852, 1, 0.8152318, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_n5pb8"]
+radius = 0.08
+height = 0.08
+
+[node name="Light" type="Node3D" unique_id=1470598383]
+script = ExtResource("1_nqt1r")
+
+[node name="Body" type="Node3D" parent="." unique_id=1770124655]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=297616409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_ugry3")
+mesh = SubResource("TorusMesh_me50d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body" unique_id=1648896042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_ugry3")
+mesh = SubResource("CylinderMesh_ugry3")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body" unique_id=1371588807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+material_override = SubResource("StandardMaterial3D_ugry3")
+mesh = SubResource("CylinderMesh_nqt1r")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Body" unique_id=472061893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_th3th")
+transparency = 0.06
+mesh = SubResource("SphereMesh_n5pb8")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1152787634 groups=["light"]]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.02, 0)
+shadow_enabled = true
+
+[node name="LightCone" type="MeshInstance3D" parent="SpotLight3D" unique_id=794006936]
+script = ExtResource("2_th3th")
