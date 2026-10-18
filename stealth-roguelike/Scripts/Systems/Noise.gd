@@ -2,13 +2,15 @@ class_name NoiseHelper
 
 static var show_debug: bool = true
 
-# make a noise at a position
-static func make(tree: SceneTree, position: Vector3, loudness: float) -> void:
-	tree.call_group("hearing", "hear_noise", position, loudness)
+# make a noise at a position. kind says what it was, for listeners that care
+# (e.g. &"shout" = a guard calling for help); everything else is a plain &"noise"
+static func make(tree: SceneTree, position: Vector3, loudness: float, kind: StringName = &"noise") -> void:
+	tree.call_group("hearing", "hear_noise", position, loudness, kind)
 	if show_debug:
-		_draw_debug_ring(tree, position, loudness)
+		var colour = Color(1.0, 0.3, 0.2, 0.8) if kind == &"shout" else Color(0.3, 0.6, 1.0, 0.8)
+		_draw_debug_ring(tree, position, loudness, colour)
 
-static func _draw_debug_ring(tree: SceneTree, position: Vector3, radius: float) -> void:
+static func _draw_debug_ring(tree: SceneTree, position: Vector3, radius: float, colour: Color) -> void:
 	var mesh = TorusMesh.new()
 	mesh.outer_radius = radius
 	mesh.inner_radius = max(radius - 0.1, 0.01)
@@ -16,7 +18,7 @@ static func _draw_debug_ring(tree: SceneTree, position: Vector3, radius: float) 
 	var material = StandardMaterial3D.new()
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = Color(0.3, 0.6, 1.0, 0.8)
+	material.albedo_color = colour
 	mesh.material = material
 
 	var ring = MeshInstance3D.new()

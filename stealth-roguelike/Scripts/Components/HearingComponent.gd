@@ -1,6 +1,6 @@
 class_name HearingComponent extends Node3D
 
-signal noise_heard(position, strength)
+signal noise_heard(position, strength, kind)
 
 @export var sensitivity: float = 1.0
 @export var wall_muffle: float = 0.5
@@ -11,7 +11,7 @@ var last_heard = "-"
 func _ready() -> void:
 	add_to_group("hearing")
 
-func hear_noise(noise_position: Vector3, loudness: float):
+func hear_noise(noise_position: Vector3, loudness: float, kind: StringName = &"noise"):
 	var radius = loudness * sensitivity
 	var distance = global_position.distance_to(noise_position)
 	
@@ -26,7 +26,7 @@ func hear_noise(noise_position: Vector3, loudness: float):
 	
 	var strength = 1.0 - distance / radius
 	last_heard = "%.1fm (%.2f)" % [distance, strength]
-	noise_heard.emit(noise_position, strength)
+	noise_heard.emit(noise_position, strength, kind)
 
 func _is_blocked(noise_position: Vector3) -> bool:
 	var query = PhysicsRayQueryParameters3D.create(global_position, noise_position, 1)

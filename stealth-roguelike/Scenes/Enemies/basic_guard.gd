@@ -22,6 +22,10 @@ signal arrived
 @export var takedown_angle: float = 100.0  # degrees round from where he faces you must be (90 = beside him, 180 = right behind)
 @export var takedown_noise: float = 2.0    # a scuffle a guard standing right next to him might hear
 
+@export_group("Alarm")
+@export var shout_loudness: float = 15.0   # how far a shout for help carries (walls muffle it)
+@export var shout_cooldown: float = 6.0    # seconds between shouts, so a guard doesn't spam them
+
 @export_group("Parts")
 @export var vision: VisionComponent
 @export var nav_agent: NavigationAgent3D
@@ -49,6 +53,11 @@ var stuck_timer = 0.0
 # cutscene control: walking to a walk_to() spot, and the angle to turn to (null = don't turn)
 var script_walking = false
 var script_facing = null
+# alarm: time until we can shout again, whether this search is a hurry (run, not walk),
+# and the bodies we've already found (so each one only alarms us once)
+var shout_timer = 0.0
+var search_hurry = false
+var known_bodies: Array[Node3D] = []
 
 func _ready():
 	add_to_group("enemy")
@@ -74,6 +83,9 @@ func _ready():
 func _physics_process(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	shout_timer = maxf(shout_timer - delta, 0.0)
+	_look_for_bodies()
 
 	# player last position
 	if vision.sees_player:
@@ -132,7 +144,8 @@ func _suspicious(delta):
 
 func _searching(delta):
 	if not nav_agent.is_navigation_finished():
-		_move_along_path(stats.walk_speed, delta)
+		# run if we're answering a shout or heading for a body
+		_move_along_path(stats.chase_speed if search_hurry else stats.walk_speed, delta)
 		return
 
 	# Arrived at the last seen spot, turn slowly on the spot, then give up
@@ -173,8 +186,10 @@ func _change_state(new_state):
 		State.SEARCHING:
 			nav_agent.target_position = last_seen_position
 			search_timer = stats.search_time
+			search_hurry = false
 		State.ALERT:
 			was_alerted = true
+			_shout()
 
 
 # MOVEMENT
@@ -318,9 +333,13 @@ func _on_cleared():
 # HEARING
 
 
-func _on_noise_heard(noise_position, _strength):
-	# already chasing, or in a cutscene: a noise doesn't change anything
-	if state == State.ALERT or state == State.SCRIPTED:
+func _on_noise_heard(noise_position, _strength, kind):
+	# already chasing, in a cutscene, or dead: a noise doesn't change anything
+	if state == State.ALERT or state == State.SCRIPTED or state == State.DEAD:
+		return
+
+	if kind == &"shout":
+		_hear_shout(noise_position)
 		return
 
 	if state == State.SUSPICIOUS:
@@ -382,8 +401,9 @@ func _on_died():
 	_change_state(State.DEAD)
 	set_physics_process(false)
 	velocity = Vector3.ZERO
-	# stop seeing, hearing, attacking and lighting the place up
+	# stop seeing, hearing, attacking and lighting the place up; other guards can find us now
 	remove_from_group("enemy")
+	add_to_group("body")
 	hearing.remove_from_group("hearing")
 	detection.set_physics_process(false)
 	vision.set_physics_process(false)
@@ -395,8 +415,58 @@ func _on_died():
 	animator.play_death()
 
 
+# ALARM: finding bodies and shouting for help
+
+
+# a guard on patrol or searching who sees a body he hasn't seen yet raises the alarm
+func _look_for_bodies():
+	if state != State.PATROL and state != State.SEARCHING:
+		return
+	for body in get_tree().get_nodes_in_group("body"):
+		if body in known_bodies:
+			continue
+		# a body's origin is at its old standing height; look at the floor where it lies
+		if vision.can_see_point(body.global_position + Vector3.DOWN * 0.5):
+			known_bodies.append(body)
+			_on_body_found(body)
+			return
+
+func _on_body_found(body: Node3D):
+	print("Guard: found a body")
+	# on edge for the rest of the level: he spots you twice as fast from now on
+	detection.alarmed = true
+	was_alerted = true
+	_shout()
+	_search_in_a_hurry(body.global_position)
+
+# a shout from another guard: run over there, ready to recognise the player at a glance
+func _hear_shout(shout_position: Vector3):
+	# our own shout
+	if shout_position.distance_to(global_position) < 1.5:
+		return
+	print("Guard: heard a shout")
+	was_alerted = true
+	_search_in_a_hurry(shout_position)
+
+func _search_in_a_hurry(target: Vector3):
+	last_seen_position = target
+	_change_state(State.SEARCHING)
+	# (if we were already searching, _change_state didn't set these up, so always do it here)
+	nav_agent.target_position = target
+	search_timer = stats.search_time
+	search_hurry = true
+
+# call for help; guards in earshot come running
+func _shout():
+	if shout_timer > 0.0:
+		return
+	shout_timer = shout_cooldown
+	print("Guard: shouts for help")
+	NoiseHelper.make(get_tree(), global_position + Vector3.UP * 0.8, shout_loudness, &"shout")
+
+
 # DEBUG
 
 
 func get_debug_info() -> Dictionary:
-	return {"state": State.keys()[state]}
+	return {"state": State.keys()[state], "on edge": detection.alarmed}

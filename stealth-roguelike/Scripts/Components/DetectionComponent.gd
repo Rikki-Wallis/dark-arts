@@ -11,6 +11,10 @@ signal cleared
 @export var drain_delay: float = 1.5
 @export var drain_speed: float = 0.25
 @export var crouch_multiplier: float = 0.5
+# a guard who's found a body is on edge for the rest of the level: his meter fills this much faster
+@export var alarmed_multiplier: float = 2.0
+
+var alarmed = false
 
 var detection = 0.0
 var is_detected = false
@@ -21,7 +25,8 @@ func _physics_process(delta: float) -> void:
 	var old_detection = detection
 	
 	if vision.sees_player:
-		detection += delta / _time_to_detect() * _visibility_multiplier()
+		var alarm = alarmed_multiplier if alarmed else 1.0
+		detection += delta / _time_to_detect() * _visibility_multiplier() * alarm
 		drain_timer = drain_delay
 	
 	elif drain_timer > 0:

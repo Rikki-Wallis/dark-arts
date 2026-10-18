@@ -83,3 +83,16 @@ func set_cone_colour(colour: Color):
 # (and back again as it drains), so the player can read how close they are to being caught
 func show_alertness(amount: float):
 	set_cone_colour(Color(cone_calm_color.lerp(cone_alert_color, amount), cone_alpha))
+
+# can we see this point (in range, inside the cone, nothing in the way)? Unlike the player,
+# things like bodies don't hide in darkness: the guard's own lantern lights what's in his cone
+func can_see_point(point: Vector3) -> bool:
+	var to_point = point - global_position
+	if to_point.length() > view_distance:
+		return false
+	var forward = -global_transform.basis.z
+	if rad_to_deg(forward.angle_to(to_point)) > view_angle / 2.0:
+		return false
+	var query = PhysicsRayQueryParameters3D.create(global_position, point, 1)
+	query.exclude = [owner.get_rid()]
+	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
