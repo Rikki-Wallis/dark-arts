@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://bjn0nuq454r74" path="res://Scripts/Spells/Spell.gd" id="12_spell"]
 [ext_resource type="Resource" uid="uid://b6c87xawpksxa" path="res://Resources/Spells/shadow_cloak.tres" id="13_cloak"]
 [ext_resource type="Script" uid="uid://bua8f7jknfxjj" path="res://Scripts/Components/mana_component.gd" id="14_mana"]
+[ext_resource type="Script" path="res://Scripts/Components/climb_component.gd" id="15_climb"]
+[ext_resource type="Script" path="res://Scripts/Components/footstep_component.gd" id="16_steps"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsm8u"]
 
@@ -133,6 +135,15 @@ max_mana = 50.0
 regen_in_darkness = 2.0
 drain_in_light = 5.0
 light_detector = NodePath("../../LightDetector2")
+
+[node name="ClimbComponent" type="Node" parent="Components" unique_id=116660275 node_paths=PackedStringArray("body", "collision_shape")]
+script = ExtResource("15_climb")
+body = NodePath("../..")
+collision_shape = NodePath("../../CollisionShape3D")
+
+[node name="FootstepComponent" type="Node" parent="Components" unique_id=1771134171 node_paths=PackedStringArray("body")]
+script = ExtResource("16_steps")
+body = NodePath("../..")
 
 [node name="CeilingCheck" type="ShapeCast3D" parent="." unique_id=594356344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
