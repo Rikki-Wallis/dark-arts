@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ox3yvjxhdhm4" path="res://Scenes/LevelKits/Jail/GuardRooms/cell_block.tscn" id="7_sd2xd"]
 [ext_resource type="PackedScene" uid="uid://ut1vl66i485l" path="res://Scenes/LevelKits/Jail/GuardRooms/guard_post.tscn" id="8_hqp30"]
 [ext_resource type="PackedScene" uid="uid://d3tb0w44rq7d4" path="res://Scenes/LevelKits/Jail/GuardRooms/mess_hall.tscn" id="9_fvqo0"]
+[ext_resource type="PackedScene" uid="uid://c1b3wcboxasii" path="res://Scenes/LevelKits/Jail/cell_block_large.tscn" id="10_c3q8l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_807ki"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,7 +43,7 @@ agent_max_climb = 0.3
 script = ExtResource("1_g85kb")
 start_room = ExtResource("2_g85kb")
 exit_room = ExtResource("3_k8oh1")
-room_pool = Array[PackedScene]([ExtResource("4_4ew6k"), ExtResource("5_5drqt"), ExtResource("6_3psfe"), ExtResource("7_sd2xd"), ExtResource("8_hqp30"), ExtResource("9_fvqo0"), ExtResource("5_5drqt")])
+room_pool = Array[PackedScene]([ExtResource("4_4ew6k"), ExtResource("5_5drqt"), ExtResource("6_3psfe"), ExtResource("7_sd2xd"), ExtResource("8_hqp30"), ExtResource("9_fvqo0"), ExtResource("5_5drqt"), ExtResource("10_c3q8l")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=822197805]
 environment = SubResource("Environment_hty12")

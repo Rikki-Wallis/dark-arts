@@ -79,6 +79,30 @@ use_collision = true
 size = Vector3(5, 2, 5)
 material = SubResource("StandardMaterial3D_c2dob")
 
+[node name="CSGBox3D5" type="CSGBox3D" parent="Obstacles" unique_id=2085550648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000017, -31.400002)
+use_collision = true
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Obstacles" unique_id=395913791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 0.19999984, -31.400002)
+use_collision = true
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Obstacles" unique_id=105206485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, 0.6999998, -31.400002)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Obstacles" unique_id=1443699610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2000003, 1.0999998, -31.400002)
+use_collision = true
+size = Vector3(1, 2.8, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Obstacles" unique_id=619509030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8, 1.3999999, -31.400002)
+use_collision = true
+size = Vector3(1, 3.5, 1)
+
 [node name="Area3D" type="Area3D" parent="Obstacles" unique_id=731601137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 29)
 script = ExtResource("2_cpkch")
