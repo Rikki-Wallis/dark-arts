@@ -17,7 +17,7 @@ uniform vec3 lit_line_color : source_color = vec3(0.0, 0.0, 0.0);    // black ou
 // what counts as lit, and where outlines go
 uniform float lit_threshold = 0.03;    // brighter than this = lit by a light
 uniform float lit_softness = 0.0;      // soft band at the edge of lit areas (0 = hard edge)
-uniform float line_width = 1.5;        // outline thickness in pixels
+uniform float line_width = 1;        // outline thickness in pixels
 uniform float depth_threshold = 0.04;  // how big a depth jump makes an outline (fraction of distance)
 uniform float normal_threshold = 0.4;  // how sharp a corner makes an outline
 uniform float edge_blend = 0.0;        // how far (in pixels) light pools fade to black at their edge; 0 = hard noir cut

@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
-enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
+enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT, SCRIPTED }
+
+# emitted while SCRIPTED when the guard reaches the spot given to walk_to()
+signal arrived
 
 @export var patrol_points: Array[Marker3D] = []
 
@@ -19,6 +22,10 @@ enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT }
 # vision cone colour: calm at an empty detection meter, alarmed at a full one
 @export var cone_calm_color: Color = Color(1.0, 0.9, 0.2)
 @export var cone_alert_color: Color = Color(1.0, 0.1, 0.1)
+
+# true = a cutscene drives this guard (see IntroSequence); the level's activate() is
+# ignored until the cutscene calls end_script()
+@export var scripted_intro: bool = false
 
 @onready var vision = $VisionComponent
 @onready var nav_agent = $NavigationAgent3D
@@ -47,6 +54,9 @@ var cone_alpha = 0.15
 # stuck detection: where we last made real progress, and how long since
 var stuck_check_position = Vector3.ZERO
 var stuck_timer = 0.0
+# cutscene control: walking to a walk_to() spot, and the angle to turn to (null = don't turn)
+var script_walking = false
+var script_facing = null
 
 func _ready():
 	add_to_group("enemy")
@@ -63,6 +73,10 @@ func _ready():
 	if vision.cone:
 		cone_alpha = vision.cone.cone_color.a
 	_update_cone_colour(0.0)
+
+	# a cutscene guard can't notice the player until the cutscene hands him back
+	if scripted_intro:
+		detection.set_physics_process(false)
 
 	# wait for nav mesh to load
 	set_physics_process(false)
@@ -98,6 +112,8 @@ func _physics_process(delta: float):
 			_searching(delta)
 		State.ALERT:
 			_alert(delta)
+		State.SCRIPTED:
+			_scripted(delta)
 
 	move_and_slide()
 	_check_stuck(delta)
@@ -199,6 +215,9 @@ func _move_along_path(speed, delta, face_path = true):
 		_face_direction(direction, delta)
 
 func activate():
+	# a cutscene guard is started by end_script() instead, when the cutscene is done with him
+	if scripted_intro:
+		return
 	home_position = global_position
 	home_facing = global_rotation.y
 	set_physics_process(true)
@@ -253,6 +272,46 @@ func _face_direction(direction, delta):
 	global_rotation.y = lerp_angle(global_rotation.y, target_angle, delta * 8.0)
 
 
+# CUTSCENE CONTROL (used by IntroSequence)
+
+
+func begin_script():
+	state = State.SCRIPTED
+	detection.set_physics_process(false)
+	set_physics_process(true)
+
+func walk_to(target: Vector3):
+	script_facing = null
+	script_walking = true
+	nav_agent.target_position = target
+
+func turn_to(angle: float):
+	script_facing = angle
+
+# hand the guard back to his normal AI. activate() stores where he is now and the way
+# he's facing as home, so with no patrol points he stands guard right here
+func end_script():
+	scripted_intro = false
+	script_walking = false
+	script_facing = null
+	state = State.PATROL
+	detection.set_physics_process(true)
+	activate()
+
+func _scripted(delta):
+	if script_walking:
+		if nav_agent.is_navigation_finished():
+			script_walking = false
+			_stop()
+			arrived.emit()
+		else:
+			_move_along_path(stats.walk_speed, delta)
+		return
+	_stop()
+	if script_facing != null:
+		global_rotation.y = lerp_angle(global_rotation.y, script_facing, delta * 4.0)
+
+
 # DETECTION
 
 
@@ -268,6 +327,8 @@ func _on_detection_changed(amount):
 
 
 func _on_fully_detected():
+	if state == State.SCRIPTED:
+		return
 	alert_label.scale = Vector3.ONE * 0.1
 	create_tween().tween_property(alert_label, "scale", Vector3.ONE, 0.2) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -303,8 +364,8 @@ func _update_cone_colour(amount):
 
 
 func _on_noise_heard(noise_position, _strength):
-	# already chasing: a noise doesn't change anything
-	if state == State.ALERT:
+	# already chasing, or in a cutscene: a noise doesn't change anything
+	if state == State.ALERT or state == State.SCRIPTED:
 		return
 
 	if state == State.SUSPICIOUS:

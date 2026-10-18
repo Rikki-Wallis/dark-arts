@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1j2iooshtx4j" path="res://Scripts/LevelGeneration/LevelGenerator.gd" id="1_g85kb"]
 [ext_resource type="PackedScene" uid="uid://bjy8gt6tny7ck" path="res://Scenes/PlayerComponents/player-controller.tscn" id="1_hty12"]
-[ext_resource type="PackedScene" uid="uid://bsvrs5gso2ok0" path="res://Scenes/LevelKits/Jail/start_room.tscn" id="2_c3q8l"]
+[ext_resource type="PackedScene" uid="uid://88m6kv4xarnl" path="res://Scenes/LevelKits/Jail/Misc Rooms/start_cell.tscn" id="2_g85kb"]
 [ext_resource type="PackedScene" uid="uid://cfcy8tyrid0rp" path="res://Scenes/LevelKits/Jail/exit_room.tscn" id="3_k8oh1"]
 [ext_resource type="PackedScene" uid="uid://dsvt34b3vb7i3" path="res://Scenes/LevelKits/Jail/Connectors/corner.tscn" id="4_4ew6k"]
 [ext_resource type="PackedScene" uid="uid://dnn3xj7cmix55" path="res://Scenes/LevelKits/Jail/Connectors/straight_corridor.tscn" id="5_5drqt"]
@@ -32,15 +32,15 @@ volumetric_fog_length = 20.0
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navmesh_source"
-agent_height = 1.9
 cell_size = 0.125
-agent_radius = 0.375
 cell_height = 0.1
+agent_height = 1.9
+agent_radius = 0.375
 agent_max_climb = 0.3
 
 [node name="GeneratedLevel" type="Node3D" unique_id=2066880768]
 script = ExtResource("1_g85kb")
-start_room = ExtResource("2_c3q8l")
+start_room = ExtResource("2_g85kb")
 exit_room = ExtResource("3_k8oh1")
 room_pool = Array[PackedScene]([ExtResource("4_4ew6k"), ExtResource("5_5drqt"), ExtResource("6_3psfe"), ExtResource("7_sd2xd"), ExtResource("8_hqp30"), ExtResource("9_fvqo0"), ExtResource("5_5drqt")])
 

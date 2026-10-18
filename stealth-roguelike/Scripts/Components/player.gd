@@ -15,7 +15,6 @@ var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
-
 const SENSITIVITY = 0.003
 
 # footstep noise	
@@ -46,6 +45,12 @@ const CROUCH_HEIGHT = 1.2
 const STAND_HEAD_Y = 1.7
 const CROUCH_HEAD_Y = 0.8
 var is_crouching = false
+
+# Items
+var keys: Array[StringName] = []
+
+# true while a cutscene plays: you can look around but not move or act
+var controls_locked = false
 
 # Runs at beggining of scene, get rid of cursor
 func _ready():
@@ -97,21 +102,21 @@ func _physics_process(delta: float) -> void:
 	head.position.y = lerp(head.position.y, target_head_y, delta * 10.0)
 	
 	# Handle interact
-	if Input.is_action_just_pressed("Interact") and interact_ray.is_colliding():
+	if not controls_locked and Input.is_action_just_pressed("Interact") and interact_ray.is_colliding():
 		var target = interact_ray.get_collider()
 		if target.has_method("interact"):
 			target.interact(self)
 	
 	# Handle weapon
-	if Input.is_action_just_pressed("UseWeapon"):
+	if not controls_locked and Input.is_action_just_pressed("UseWeapon"):
 		weapon_controller.fire()
 
 	# Handle spells
-	if Input.is_action_just_pressed("CastSpell"):
+	if not controls_locked and Input.is_action_just_pressed("CastSpell"):
 		spell_controller.cast()
 
 	# Handle jump
-	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
+	if not controls_locked and Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle sprint
@@ -124,7 +129,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
+	var input_dir := Vector2.ZERO
+	if not controls_locked:
+		input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Only allow for user to effect x direction when on floor
@@ -200,3 +207,14 @@ func _make_landing_noise(fall_speed):
 
 func _make_noise(loudness):
 	NoiseHelper.make(get_tree(), global_position + Vector3(0, 1, 0), loudness)
+
+
+# KEYS
+
+
+func add_key(key_id: StringName):
+	if key_id not in keys:
+		keys.append(key_id)
+
+func has_key(key_id: StringName) -> bool:
+	return key_id in keys

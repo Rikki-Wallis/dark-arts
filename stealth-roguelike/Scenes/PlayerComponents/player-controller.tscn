@@ -33,11 +33,14 @@ render_priority = -128
 shader = ExtResource("9_kw66u")
 shader_parameter/dark_color = Color(0, 0, 0, 1)
 shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/lit_color = Color(1, 1, 1, 1)
+shader_parameter/lit_line_color = Color(0, 0, 0, 1)
 shader_parameter/lit_threshold = 0.03
 shader_parameter/lit_softness = 0.0
 shader_parameter/line_width = 1.5
 shader_parameter/depth_threshold = 0.04
 shader_parameter/normal_threshold = 0.4
+shader_parameter/edge_blend = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_tsm8u"]
 size = Vector2(2, 2)
@@ -97,6 +100,7 @@ transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 8.709011e-08, 0.9961947
 
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=493323899]
 target_position = Vector3(0, 0, -2.5)
+collision_mask = 7
 
 [node name="DarkFilter" type="MeshInstance3D" parent="Head/Camera3D" unique_id=1304545802]
 material_override = SubResource("ShaderMaterial_sywkl")

@@ -37,6 +37,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 material_override = SubResource("StandardMaterial3D_ugry3")
 mesh = SubResource("TorusMesh_me50d")
 
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Body" unique_id=1898501839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+material_override = SubResource("StandardMaterial3D_ugry3")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Body" unique_id=1648896042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 material_override = SubResource("StandardMaterial3D_ugry3")
