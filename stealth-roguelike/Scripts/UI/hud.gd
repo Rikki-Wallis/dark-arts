@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var mana_frame = $ManaFrame
 @onready var ammo_label = $MarginContainer/HBoxContainer/AmmoLabel 
 @onready var spell_bar = $SpellBar
+@onready var prompt_label = $PromptLabel
 
 var spell_slots: Array[SpellSlotUI] = []
 
@@ -85,3 +86,10 @@ func _on_spell_cast(spell):
 	for slot in spell_slots:
 		if slot.spell == spell:
 			slot.flash()
+
+# a short hint under the crosshair, e.g. "[E] Takedown"; empty text hides it
+func set_prompt(text: String):
+	if prompt_label.text == text:
+		return
+	prompt_label.text = text
+	prompt_label.visible = text != ""

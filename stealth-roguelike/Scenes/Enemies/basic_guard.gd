@@ -5,7 +5,7 @@ extends CharacterBody3D
 # alertness lives in components (MeleeAttackComponent, GuardAnimator, AlertIndicator,
 # VisionComponent's cone colour).
 
-enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT, SCRIPTED }
+enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT, SCRIPTED, DEAD }
 
 # emitted while SCRIPTED when the guard reaches the spot given to walk_to()
 signal arrived
@@ -17,6 +17,11 @@ signal arrived
 # ignored until the cutscene calls end_script()
 @export var scripted_intro: bool = false
 
+@export_group("Takedown")
+@export var takedown_range: float = 1.6    # how close you must be (along the ground)
+@export var takedown_angle: float = 100.0  # degrees round from where he faces you must be (90 = beside him, 180 = right behind)
+@export var takedown_noise: float = 2.0    # a scuffle a guard standing right next to him might hear
+
 @export_group("Parts")
 @export var vision: VisionComponent
 @export var nav_agent: NavigationAgent3D
@@ -25,6 +30,8 @@ signal arrived
 @export var health: HealthComponent
 @export var stats: EnemyStats
 @export var melee: MeleeAttackComponent
+@export var animator: GuardAnimator
+@export var lantern: Light3D
 
 var state = State.PATROL
 var patrol_index = 0
@@ -343,8 +350,49 @@ func take_damage(amount):
 		last_seen_position = vision.player.global_position
 		detection.force_detect()
 
+
+
+# TAKEDOWN AND DEATH
+
+
+# can this attacker take us down right now? Only from behind, close, and not while we're chasing them
+func can_be_taken_down(attacker: Node3D) -> bool:
+	if state == State.ALERT or state == State.SCRIPTED or state == State.DEAD:
+		return false
+	var to_attacker = attacker.global_position - global_position
+	to_attacker.y = 0.0
+	if to_attacker.length() > takedown_range:
+		return false
+	var forward = -global_transform.basis.z
+	forward.y = 0.0
+	return rad_to_deg(forward.angle_to(to_attacker)) >= takedown_angle
+
+# called by the player (duck typing, like interact()); returns true if it worked
+func takedown(attacker: Node3D) -> bool:
+	if not can_be_taken_down(attacker):
+		return false
+	# straight to 0 health, without take_damage()'s "I've been shot, I know where you are"
+	# reaction; then a small scuffle (after dying, so only OTHER guards can hear it)
+	health.take_damage(health.current_health)
+	NoiseHelper.make(get_tree(), global_position, takedown_noise)
+	return true
+
+# shot or taken down: leave a body behind (later, other guards could find it)
 func _on_died():
-	queue_free()
+	_change_state(State.DEAD)
+	set_physics_process(false)
+	velocity = Vector3.ZERO
+	# stop seeing, hearing, attacking and lighting the place up
+	remove_from_group("enemy")
+	hearing.remove_from_group("hearing")
+	detection.set_physics_process(false)
+	vision.set_physics_process(false)
+	vision.set_cone_visibility(false)
+	melee.set_physics_process(false)
+	lantern.visible = false
+	# nothing collides with the body (you can walk over it, rays and bullets pass through)
+	collision_layer = 0
+	animator.play_death()
 
 
 # DEBUG

@@ -17,7 +17,7 @@
 radius = 0.3
 height = 1.9
 
-[node name="BasicGuard" type="CharacterBody3D" unique_id=739860987 node_paths=PackedStringArray("vision", "nav_agent", "detection", "hearing", "health", "stats", "melee")]
+[node name="BasicGuard" type="CharacterBody3D" unique_id=739860987 node_paths=PackedStringArray("vision", "nav_agent", "detection", "hearing", "health", "stats", "melee", "animator", "lantern")]
 collision_mask = 3
 script = ExtResource("1_mpsej")
 vision = NodePath("VisionComponent")
@@ -27,6 +27,8 @@ hearing = NodePath("HearingComponent")
 health = NodePath("Components/HealthComponent")
 stats = NodePath("Components/EnemyStats")
 melee = NodePath("Components/MeleeAttackComponent")
+animator = NodePath("Components/GuardAnimator")
+lantern = NodePath("VisionComponent/Lantern")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273884807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000002, 0)
@@ -83,7 +85,7 @@ stats = NodePath("../EnemyStats")
 melee = NodePath("../MeleeAttackComponent")
 model = NodePath("../../Model")
 
-[node name="AlertLabel" type="Label3D" parent="." unique_id=1829926958 node_paths=PackedStringArray("detection")]
+[node name="AlertLabel" type="Label3D" parent="." unique_id=1829926958 node_paths=PackedStringArray("detection", "health")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 visible = false
 billboard = 1
@@ -92,6 +94,7 @@ text = "!"
 font_size = 64
 script = ExtResource("11_alert")
 detection = NodePath("../Components/DetectionComponent")
+health = NodePath("../Components/HealthComponent")
 
 [node name="DebugLabel" type="Label3D" parent="." unique_id=1678463405 node_paths=PackedStringArray("sources")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 1, 0)

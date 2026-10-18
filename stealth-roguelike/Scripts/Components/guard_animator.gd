@@ -18,12 +18,16 @@ class_name GuardAnimator extends Node
 @export var death_anim: StringName = &"Death"
 @export var blend_time: float = 0.2
 
+var dead = false
+
 func _ready():
 	_apply_outline()
 	if melee:
 		melee.attack_started.connect(_on_attack_started)
 
 func _physics_process(_delta: float) -> void:
+	if dead:
+		return
 	# let an attack play through before going back to walking or idling
 	if melee and melee.is_attack_animation(animation_player.current_animation):
 		return
@@ -37,6 +41,11 @@ func _physics_process(_delta: float) -> void:
 
 	if animation_player.current_animation != anim_name:
 		animation_player.play(anim_name, blend_time)
+
+# plays death_anim once and stops idle/walk from taking over
+func play_death():
+	dead = true
+	animation_player.play(death_anim, 0.1)
 
 func _on_attack_started(anim: StringName):
 	if anim != &"":

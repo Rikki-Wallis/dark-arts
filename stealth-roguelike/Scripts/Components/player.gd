@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var spell_controller = $Components/SpellController
 @onready var climb: ClimbComponent = $Components/ClimbComponent
 @onready var footsteps: FootstepComponent = $Components/FootstepComponent
+@onready var hud = $Hud
 
 # vars
 var speed
@@ -94,10 +95,17 @@ func _physics_process(delta: float) -> void:
 	var target_head_y = CROUCH_HEAD_Y if is_crouching else STAND_HEAD_Y
 	head.position.y = lerp(head.position.y, target_head_y, delta * 10.0)
 
-	# Handle interact
-	if not controls_locked and Input.is_action_just_pressed("Interact") and interact_ray.is_colliding():
-		var target = interact_ray.get_collider()
-		if target.has_method("interact"):
+	# Handle interact: a takedown if we're looking at a guard we can take down,
+	# otherwise use whatever we're looking at
+	var target = interact_ray.get_collider() if interact_ray.is_colliding() else null
+	var can_takedown = target != null and target.has_method("can_be_taken_down") \
+		and target.can_be_taken_down(self)
+	hud.set_prompt("[E] Takedown" if can_takedown and not controls_locked else "")
+	if not controls_locked and Input.is_action_just_pressed("Interact") and target != null:
+		if can_takedown:
+			if target.takedown(self):
+				camera.fov -= 10.0   # a quick lurch; the fov lerp below eases it back
+		elif target.has_method("interact"):
 			target.interact(self)
 
 	# Handle weapon

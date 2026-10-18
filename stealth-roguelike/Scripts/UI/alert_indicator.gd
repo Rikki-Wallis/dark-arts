@@ -5,11 +5,13 @@ class_name AlertIndicator extends Label3D
 # in when it's full. Pure display: the guard's script never touches it.
 
 @export var detection: DetectionComponent
+@export var health: HealthComponent     # hide when the guard dies
 
 func _ready():
 	visible = false
 	detection.detection_changed.connect(_on_detection_changed)
 	detection.fully_detected.connect(_on_fully_detected)
+	health.died.connect(func(): visible = false)
 
 func _on_detection_changed(amount: float):
 	if amount <= 0.0:
