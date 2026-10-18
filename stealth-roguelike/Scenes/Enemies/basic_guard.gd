@@ -1,41 +1,30 @@
 extends CharacterBody3D
 
+# The guard's brain: a state machine that decides what to do with what its components
+# report (vision, detection meter, hearing, health). How it attacks, animates and shows
+# alertness lives in components (MeleeAttackComponent, GuardAnimator, AlertIndicator,
+# VisionComponent's cone colour).
+
 enum State { PATROL, SUSPICIOUS, SEARCHING, ALERT, SCRIPTED }
 
 # emitted while SCRIPTED when the guard reaches the spot given to walk_to()
 signal arrived
 
 @export var patrol_points: Array[Marker3D] = []
-
-@export var idle_anim: StringName = &"Idle"
-@export var death_anim: StringName = &"Death"
-@export var walk_anim: StringName = &"Walk"
-@export var run_anim: StringName = &"Run"
-# one of these is picked at random for each attack (they must not loop)
-@export var attack_anims: Array[StringName] = [&"Punch_Left", &"Punch_Right", &"Kick_Left", &"Kick_Right"]
-@export var attack_hit_delay: float = 0.3   # seconds into the attack when the hit lands
 # if the guard is following a path but hasn't really moved for this long, it gives up on that spot
 @export var stuck_time: float = 1.5
-
-@export var outline_material: Material
-
-# vision cone colour: calm at an empty detection meter, alarmed at a full one
-@export var cone_calm_color: Color = Color(1.0, 0.9, 0.2)
-@export var cone_alert_color: Color = Color(1.0, 0.1, 0.1)
-
 # true = a cutscene drives this guard (see IntroSequence); the level's activate() is
 # ignored until the cutscene calls end_script()
 @export var scripted_intro: bool = false
 
-@onready var vision = $VisionComponent
-@onready var nav_agent = $NavigationAgent3D
-@onready var alert_label = $AlertLabel
-@onready var detection = $Components/DetectionComponent
-@onready var stats = $Components/EnemyStats
-@onready var hearing = $HearingComponent
-@onready var health = $Components/HealthComponent
-@onready var model_anim: AnimationPlayer = $Model/AnimationPlayer
-
+@export_group("Parts")
+@export var vision: VisionComponent
+@export var nav_agent: NavigationAgent3D
+@export var detection: DetectionComponent
+@export var hearing: HearingComponent
+@export var health: HealthComponent
+@export var stats: EnemyStats
+@export var melee: MeleeAttackComponent
 
 var state = State.PATROL
 var patrol_index = 0
@@ -44,13 +33,9 @@ var search_timer = 0.0
 var last_seen_position = Vector3.ZERO
 var tracking_timer = 0.0
 var was_alerted = false
-var attack_timer = 0.0
-var hit_timer = 0.0   # counts down to the moment an attack connects; 0 = no attack in progress
 # where the guard started, so it has somewhere to return to without a patrol route
 var home_position = Vector3.ZERO
 var home_facing = 0.0
-# the cone's see-through amount, kept from the scene so only its colour changes
-var cone_alpha = 0.15
 # stuck detection: where we last made real progress, and how long since
 var stuck_check_position = Vector3.ZERO
 var stuck_timer = 0.0
@@ -60,19 +45,12 @@ var script_facing = null
 
 func _ready():
 	add_to_group("enemy")
-	alert_label.visible = false
 
 	detection.detection_changed.connect(_on_detection_changed)
 	detection.fully_detected.connect(_on_fully_detected)
 	detection.cleared.connect(_on_cleared)
 	hearing.noise_heard.connect(_on_noise_heard)
 	health.died.connect(_on_died)
-	_apply_outline()
-
-	# the VisionComponent (a child) has already found its cone by now
-	if vision.cone:
-		cone_alpha = vision.cone.cone_color.a
-	_update_cone_colour(0.0)
 
 	# a cutscene guard can't notice the player until the cutscene hands him back
 	if scripted_intro:
@@ -80,7 +58,7 @@ func _ready():
 
 	# wait for nav mesh to load
 	set_physics_process(false)
-	
+
 	if get_tree().get_first_node_in_group("level_generator") == null:
 		await get_tree().physics_frame
 		activate()
@@ -89,10 +67,6 @@ func _ready():
 func _physics_process(delta: float):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if attack_timer > 0:
-		attack_timer -= delta
-	_update_attack_hit(delta)
 
 	# player last position
 	if vision.sees_player:
@@ -117,7 +91,6 @@ func _physics_process(delta: float):
 
 	move_and_slide()
 	_check_stuck(delta)
-	_update_animation()
 
 
 # STATES
@@ -174,7 +147,7 @@ func _alert(delta):
 
 	if to_target.length() < stats.catch_distance:
 		_stop()
-		_try_attack()
+		melee.try_attack()
 	else:
 		_move_along_path(stats.chase_speed, delta, false)
 
@@ -316,8 +289,7 @@ func _scripted(delta):
 
 
 func _on_detection_changed(amount):
-	_update_alert_label(amount)
-	_update_cone_colour(amount)
+	vision.show_alertness(amount)
 	if amount > 0.0 and (state == State.PATROL or state == State.SEARCHING):
 		if was_alerted:
 			# Recently chased you, recognises you instantly
@@ -325,39 +297,15 @@ func _on_detection_changed(amount):
 		else:
 			_change_state(State.SUSPICIOUS)
 
-
 func _on_fully_detected():
 	if state == State.SCRIPTED:
 		return
-	alert_label.scale = Vector3.ONE * 0.1
-	create_tween().tween_property(alert_label, "scale", Vector3.ONE, 0.2) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_change_state(State.ALERT)
 
 func _on_cleared():
 	# Meter fully drained, go and check where we last saw them
 	if state == State.SUSPICIOUS or state == State.ALERT:
 		_change_state(State.SEARCHING)
-
-func _update_alert_label(amount):
-	if amount <= 0.0:
-		alert_label.visible = false
-		return
-
-	alert_label.visible = true
-	if amount >= 1.0:
-		alert_label.text = "!"
-		alert_label.modulate = Color.RED
-	else:
-		alert_label.text = "?"
-		alert_label.modulate = Color.YELLOW.lerp(Color.ORANGE_RED, amount)
-		alert_label.scale = Vector3.ONE * lerp(0.4, 1.0, amount)
-
-# the cone shifts from calm yellow to alarmed red as the detection meter fills
-# (and back again as it drains), so the player can read how close they are to being caught
-func _update_cone_colour(amount):
-	var colour = cone_calm_color.lerp(cone_alert_color, amount)
-	vision.set_cone_colour(Color(colour, cone_alpha))
 
 
 # HEARING
@@ -397,67 +345,6 @@ func take_damage(amount):
 
 func _on_died():
 	queue_free()
-
-
-# ATTACK
-
-
-func _try_attack():
-	# only hit what we can actually see, never through a wall
-	if attack_timer > 0 or not vision.sees_player:
-		return
-
-	# a different punch or kick each time, so attacks don't look repetitive
-	if not attack_anims.is_empty():
-		model_anim.play(attack_anims.pick_random(), 0.1)
-	attack_timer = stats.attack_cooldown
-	# the hit itself lands a moment later, counted down in _physics_process; if the guard
-	# dies before then it stops processing, so a hit can never land after it's gone
-	hit_timer = attack_hit_delay
-
-func _update_attack_hit(delta):
-	if hit_timer <= 0.0:
-		return
-	hit_timer -= delta
-	if hit_timer > 0.0:
-		return
-	# the attack connects now, but only if the player is still in view and within reach
-	# (they might have dodged away during the wind-up)
-	# (measured flat along the ground, like _alert's reach check)
-	var to_player = vision.player.global_position - global_position
-	to_player.y = 0.0
-	if vision.sees_player and to_player.length() <= stats.catch_distance + 0.5:
-		vision.player.take_damage(stats.attack_damage)
-
-
-# ANIMATION
-
-
-func _update_animation():
-	
-	# let an attack play through before going back to walking or idling
-	if model_anim.current_animation in attack_anims:
-		return
-	
-	var speed = Vector2(velocity.x, velocity.z).length()
-	var anim_name = idle_anim
-	if speed > stats.walk_speed + 0.5:
-		anim_name = run_anim
-	elif speed > 0.1:
-		anim_name = walk_anim
-	
-	if model_anim.current_animation != anim_name:
-		model_anim.play(anim_name, 0.2)
-
-
-# SHADER
-
-
-func _apply_outline():
-	if outline_material == null:
-		return
-	for mesh in $Model.find_children("*", "MeshInstance3D", true, false):
-		mesh.material_overlay = outline_material
 
 
 # DEBUG

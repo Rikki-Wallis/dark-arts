@@ -7,11 +7,16 @@ signal player_lost
 @export var view_angle: float = 90.0 # the vision code
 @export var show_cone: bool = false
 @export var touch_range: float = 1.2   # guards notice you this close, even in darkness
+# cone colour (see show_alertness): calm at an empty detection meter, alarmed at a full one
+@export var cone_calm_color: Color = Color(1.0, 0.9, 0.2)
+@export var cone_alert_color: Color = Color(1.0, 0.1, 0.1)
 
 
 var player = null
 var sees_player = false
 var cone: ClippedCone
+# the cone's see-through amount, kept from the scene so only its colour changes
+var cone_alpha = 0.15
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +28,8 @@ func _ready() -> void:
 			cone = child
 	if cone:
 		cone.visible = show_cone
+		cone_alpha = cone.cone_color.a
+	show_alertness(0.0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,3 +78,8 @@ func set_cone_colour(colour: Color):
 		cone.set_cone_color(colour)
 	
 	
+
+# the cone shifts from calm yellow to alarmed red as the detection meter fills
+# (and back again as it drains), so the player can read how close they are to being caught
+func show_alertness(amount: float):
+	set_cone_colour(Color(cone_calm_color.lerp(cone_alert_color, amount), cone_alpha))

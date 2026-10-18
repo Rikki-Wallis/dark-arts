@@ -9,14 +9,24 @@
 [ext_resource type="Script" uid="uid://b501v7t4ykt0s" path="res://Scripts/debug/debug_label.gd" id="6_e7jye"]
 [ext_resource type="Script" uid="uid://c1eifwiim1y7m" path="res://Scripts/Components/HearingComponent.gd" id="7_o2euh"]
 [ext_resource type="PackedScene" uid="uid://3lulrg33tehd" path="res://Assets/Characters/Suit.gltf" id="8_uaqk5"]
+[ext_resource type="Script" path="res://Scripts/Components/melee_attack_component.gd" id="9_melee"]
+[ext_resource type="Script" path="res://Scripts/Components/guard_animator.gd" id="10_anim"]
+[ext_resource type="Script" path="res://Scripts/UI/alert_indicator.gd" id="11_alert"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsm8u"]
 radius = 0.3
 height = 1.9
 
-[node name="BasicGuard" type="CharacterBody3D" unique_id=739860987]
+[node name="BasicGuard" type="CharacterBody3D" unique_id=739860987 node_paths=PackedStringArray("vision", "nav_agent", "detection", "hearing", "health", "stats", "melee")]
 collision_mask = 3
 script = ExtResource("1_mpsej")
+vision = NodePath("VisionComponent")
+nav_agent = NodePath("NavigationAgent3D")
+detection = NodePath("Components/DetectionComponent")
+hearing = NodePath("HearingComponent")
+health = NodePath("Components/HealthComponent")
+stats = NodePath("Components/EnemyStats")
+melee = NodePath("Components/MeleeAttackComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273884807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000002, 0)
@@ -59,13 +69,29 @@ metadata/_custom_type_script = "uid://503yns3v0h42"
 script = ExtResource("4_14qer")
 metadata/_custom_type_script = "uid://brauuvrnobkm7"
 
-[node name="AlertLabel" type="Label3D" parent="." unique_id=1829926958]
+[node name="MeleeAttackComponent" type="Node" parent="Components" unique_id=2142386733 node_paths=PackedStringArray("body", "vision", "stats")]
+script = ExtResource("9_melee")
+body = NodePath("../..")
+vision = NodePath("../../VisionComponent")
+stats = NodePath("../EnemyStats")
+
+[node name="GuardAnimator" type="Node" parent="Components" unique_id=287018295 node_paths=PackedStringArray("body", "animation_player", "stats", "melee", "model")]
+script = ExtResource("10_anim")
+body = NodePath("../..")
+animation_player = NodePath("../../Model/AnimationPlayer")
+stats = NodePath("../EnemyStats")
+melee = NodePath("../MeleeAttackComponent")
+model = NodePath("../../Model")
+
+[node name="AlertLabel" type="Label3D" parent="." unique_id=1829926958 node_paths=PackedStringArray("detection")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 visible = false
 billboard = 1
 modulate = Color(1, 0, 0, 1)
 text = "!"
 font_size = 64
+script = ExtResource("11_alert")
+detection = NodePath("../Components/DetectionComponent")
 
 [node name="DebugLabel" type="Label3D" parent="." unique_id=1678463405 node_paths=PackedStringArray("sources")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 1, 0)
